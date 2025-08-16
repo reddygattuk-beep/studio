@@ -66,7 +66,7 @@ const projects = [
       "Extracted post-layout delays to establish a baseline for more complex adder designs.",
     ],
     modalDetails: "Includes a Parasitic Extraction (PEX) diagram and a detailed timing table, providing critical data for subsequent high-performance arithmetic circuit designs.",
-    image: "https://placehold.co/600x400.png",
+    image: "https://9du0c01mm4og13n7.public.blob.vercel-storage.com/4-bit.png",
     dataAiHint: "adder circuit"
   },
   {
