@@ -322,34 +322,27 @@ export default function Skills() {
   const rtlFilters = ["All", "Fundamentals", "Microarchitecture", "Low-Power", "Quality", "Interfaces", "Automation", "Deliverables"];
   const [activeRtlFilter, setActiveRtlFilter] = React.useState("All");
 
-
   const filteredSkills = React.useMemo(() => {
-    if (activeFilter !== "All" && activeFilter !== "Low-Power" && activeFilter !== "FPGA" && activeFilter !== "Memory") return [];
-    
-    if (activeFilter === "All") return Object.entries(skillsData);
-
-    return Object.entries(skillsData).filter(([, skill]) =>
-      skill.tags.includes(activeFilter)
-    );
+    if (activeFilter === "All") {
+      return Object.entries(skillsData);
+    }
+    return []; // Hide summary cards when a specific filter is active
   }, [activeFilter]);
 
   const filteredRtlSkills = React.useMemo(() => {
-    const isRtlVisible = activeFilter === "All" || activeFilter === "RTL";
-    if (!isRtlVisible) return [];
+    if (activeFilter !== "RTL") return [];
     if (activeRtlFilter === "All") return rtlSkillsData;
     return rtlSkillsData.filter(skill => skill.category === activeRtlFilter);
   }, [activeFilter, activeRtlFilter]);
 
   const filteredPdSkills = React.useMemo(() => {
-    const isPdVisible = activeFilter === "All" || activeFilter === "Physical Design";
-    if (!isPdVisible) return [];
+    if (activeFilter !== "Physical Design") return [];
     if (activePdFilter === "All") return pdSkillsData;
     return pdSkillsData.filter(skill => skill.category === activePdFilter);
   }, [activeFilter, activePdFilter]);
   
   const filteredDvSkills = React.useMemo(() => {
-      const isDvVisible = activeFilter === "All" || activeFilter === "Design Verification";
-      if (!isDvVisible) return [];
+      if (activeFilter !== "Design Verification") return [];
       if (activeDvFilter === "All") return dvSkillsData;
       return dvSkillsData.filter(skill => skill.category === activeDvFilter);
   }, [activeFilter, activeDvFilter]);
@@ -394,9 +387,11 @@ export default function Skills() {
     })
   };
 
-  const isRtlActive = activeFilter === "All" || activeFilter === "RTL";
-  const isDvActive = activeFilter === "All" || activeFilter === "Design Verification";
-  const isPdActive = activeFilter === "All" || activeFilter === "Physical Design";
+  const isRtlActive = activeFilter === "RTL";
+  const isDvActive = activeFilter === "Design Verification";
+  const isPdActive = activeFilter === "Physical Design";
+
+  const showSubFilters = isRtlActive || isDvActive || isPdActive;
 
   return (
     <Section id="skills" className="relative overflow-hidden bg-background">
@@ -461,37 +456,29 @@ export default function Skills() {
           ))}
         </div>
 
-        {isRtlActive && (
-            <div className="flex flex-wrap justify-center gap-2 mb-12">
-                {rtlFilters.map((filter) => (
-                    <Button key={filter} variant={activeRtlFilter === filter ? "secondary" : "ghost"} size="sm" onClick={() => setActiveRtlFilter(filter)}>
-                        {filter}
-                    </Button>
-                ))}
-            </div>
-        )}
-        {isPdActive && (
-            <div className="flex flex-wrap justify-center gap-2 mb-12">
-                {pdFilters.map((filter) => (
-                    <Button key={filter} variant={activePdFilter === filter ? "secondary" : "ghost"} size="sm" onClick={() => setActivePdFilter(filter)}>
-                        {filter}
-                    </Button>
-                ))}
-            </div>
-        )}
-        {isDvActive && (
-             <div className="flex flex-wrap justify-center gap-2 mb-12">
-                {dvFilters.map((filter) => (
-                    <Button key={filter} variant={activeDvFilter === filter ? "secondary" : "ghost"} size="sm" onClick={() => setActiveDvFilter(filter)}>
-                        {filter}
-                    </Button>
-                ))}
-            </div>
+        {showSubFilters && (
+          <div className="flex flex-wrap justify-center gap-2 mb-12">
+            {isRtlActive && rtlFilters.map((filter) => (
+              <Button key={filter} variant={activeRtlFilter === filter ? "secondary" : "ghost"} size="sm" onClick={() => setActiveRtlFilter(filter)}>
+                {filter}
+              </Button>
+            ))}
+            {isPdActive && pdFilters.map((filter) => (
+              <Button key={filter} variant={activePdFilter === filter ? "secondary" : "ghost"} size="sm" onClick={() => setActivePdFilter(filter)}>
+                {filter}
+              </Button>
+            ))}
+            {isDvActive && dvFilters.map((filter) => (
+              <Button key={filter} variant={activeDvFilter === filter ? "secondary" : "ghost"} size="sm" onClick={() => setActiveDvFilter(filter)}>
+                {filter}
+              </Button>
+            ))}
+          </div>
         )}
 
         <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
           <AnimatePresence>
-            {filteredSkills.map(([category, details], index) => (
+            {activeFilter === 'All' && filteredSkills.map(([category, details], index) => (
               <motion.div
                 key={category}
                 variants={cardVariants}
@@ -521,7 +508,7 @@ export default function Skills() {
                 </Card>
               </motion.div>
             ))}
-            {filteredRtlSkills.map((skill, index) => (
+            {isRtlActive && filteredRtlSkills.map((skill, index) => (
                 <motion.div
                     key={skill.title}
                     variants={cardVariants}
@@ -560,7 +547,7 @@ export default function Skills() {
                 </Card>
                 </motion.div>
             ))}
-            {filteredPdSkills.map((skill, index) => (
+            {isPdActive && filteredPdSkills.map((skill, index) => (
                 <motion.div
                 key={skill.title}
                 variants={cardVariants}
@@ -599,7 +586,7 @@ export default function Skills() {
                 </Card>
                 </motion.div>
             ))}
-             {filteredDvSkills.map((skill, index) => (
+             {isDvActive && filteredDvSkills.map((skill, index) => (
                 <motion.div
                 key={skill.title}
                 variants={cardVariants}
