@@ -5,6 +5,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Section } from "./section"
 import { Code, Cpu, Layers, GitMerge, FileCheck2, Search, Zap, Microscope, BrainCircuit, MemoryStick, Terminal } from "lucide-react"
 import { Badge } from '@/components/ui/badge';
+import { Button } from '@/components/ui/button';
 import { AnimatePresence, motion } from 'framer-motion';
 
 const VhdlSvg = () => <svg viewBox="0 0 100 100" className="h-6 w-6 text-accent"><text x="50%" y="55%" dominantBaseline="middle" textAnchor="middle" fontSize="30" fontWeight="bold" fill="currentColor">VHDL</text></svg>
