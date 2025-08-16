@@ -30,7 +30,7 @@ const educationHistory = [
     degree: "B.Tech in Electronics & Communication Engineering",
     period: "Jun 2019 – Aug 2023",
     grade: "Grade: A- First Class",
-    logo: "https://placehold.co/100x100.png",
+    logo: "https://9du0c01mm4og13n7.public.blob.vercel-storage.com/jntuh%20logo.jpg",
     dataAiHint: "university seal",
     courses: [
       { id: "Problem Solving", name: "Programming for Problem Solving" },
