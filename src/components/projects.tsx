@@ -23,7 +23,7 @@ const projects = [
     ],
     modalDetails: "In-depth analysis of adder trade-offs (Carry-Ripple, Carry-Lookahead, Carry-Select, Carry-Save) and detailed notes on achieving timing closure for each architecture. The new ALU design demonstrates significant performance improvements under specific instruction loads.",
     image: "https://placehold.co/600x400.png",
-    dataAiHint: "processor core schematic"
+    dataAiHint: "CPU core"
   },
   {
     title: "Analysis & Comparison of 6T and 8T SRAM Cells",
