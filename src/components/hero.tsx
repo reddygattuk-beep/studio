@@ -64,9 +64,6 @@ export default function Hero() {
                   Keshava
                 </span>
               </h1>
-              <p className="text-accent text-xl sm:text-2xl font-medium">
-                VLSI Engineer
-              </p>
                <blockquote className="mt-4 max-w-lg text-center md:text-left text-muted-foreground italic text-sm md:text-base border-l-2 border-primary pl-4">
                 I build reliable systems on silicon with clear RTL and rigorous verification. Complex problems become timing-safe, tapeout-ready designs.
               </blockquote>
