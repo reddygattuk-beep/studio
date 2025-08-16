@@ -10,7 +10,7 @@ const projects = [
   {
     title: "RISC-V CPU Core",
     description: "A 5-stage pipelined RISC-V processor supporting the RV32I instruction set. Designed in Verilog and verified on a Xilinx Artix-7 FPGA.",
-    image: "https://placehold.co/600x400/1E2364/9400D3?text=RISC-V",
+    image: "https://placehold.co/600x400.png",
     tags: ["Verilog", "FPGA", "RISC-V", "CPU Design"],
     link: "#",
     dataAiHint: "processor chip"
@@ -18,7 +18,7 @@ const projects = [
   {
     title: "Low-Power Memory Controller",
     description: "An asynchronous DDR4 memory controller optimized for low-power applications in IoT devices. Implemented advanced power-gating techniques.",
-    image: "https://placehold.co/600x400/1E2364/9400D3?text=RAM",
+    image: "https://placehold.co/600x400.png",
     tags: ["SystemVerilog", "UVM", "Low Power", "ASIC"],
     link: "#",
     dataAiHint: "memory ram"
@@ -26,7 +26,7 @@ const projects = [
   {
     title: "CNN Accelerator SoC",
     description: "A complete System-on-Chip designed to accelerate Convolutional Neural Networks for edge AI. Features a custom dataflow architecture.",
-    image: "https://placehold.co/600x400/1E2364/9400D3?text=AI",
+    image: "https://placehold.co/600x400.png",
     tags: ["ASIC", "SoC", "AI/ML", "Chisel"],
     link: "#",
     dataAiHint: "circuit board"
@@ -34,7 +34,7 @@ const projects = [
   {
     title: "UVM Verification Environment",
     description: "A comprehensive, reusable UVM testbench for a complex SPI master/slave IP core. Achieved 100% functional and code coverage.",
-    image: "https://placehold.co/600x400/1E2364/9400D3?text=UVM",
+    image: "https://placehold.co/600x400.png",
     tags: ["UVM", "SystemVerilog", "Verification", "IP Core"],
     link: "#",
     dataAiHint: "data graph"
