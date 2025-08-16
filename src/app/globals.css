@@ -74,3 +74,76 @@
 .glassmorphic-card {
   @apply bg-card/60 backdrop-blur-lg border border-white/10 rounded-2xl shadow-lg;
 }
+
+@layer utilities {
+  @keyframes gradient-pan {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+  }
+
+  @keyframes grid-drift {
+    0% { transform: translate(0, 0); }
+    25% { transform: translate(5px, -5px); }
+    50% { transform: translate(0, -10px); }
+    75% { transform: translate(-5px, -5px); }
+    100% { transform: translate(0, 0); }
+  }
+
+  #skills {
+    position: relative;
+    overflow: hidden;
+    background-color: hsl(var(--background)); /* Fallback */
+  }
+
+  #skills::before, #skills::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 0;
+  }
+
+  /* Layer 1: Animated Gradient */
+  #skills::before {
+    background: linear-gradient(
+      -45deg,
+      hsl(245, 40%, 25%), /* Dark Indigo */
+      hsl(285, 100%, 30%), /* Violet */
+      hsl(180, 100%, 30%), /* Cyan */
+      hsl(245, 40%, 25%)
+    );
+    background-size: 400% 400%;
+    opacity: 0.16;
+    animation: gradient-pan 30s ease infinite;
+  }
+
+  /* Layer 2: Circuit Grid */
+  #skills::after {
+    background-image:
+      linear-gradient(to right, hsl(var(--border) / 0.1) 1px, transparent 1px),
+      linear-gradient(to bottom, hsl(var(--border) / 0.1) 1px, transparent 1px),
+      radial-gradient(circle at 25% 25%, hsl(var(--accent) / 0.1) 1px, transparent 2px);
+    background-size: 50px 50px, 50px 50px, 50px 50px;
+    opacity: 0.5;
+    animation: grid-drift 40s linear infinite;
+  }
+
+  /* Ensure content is above background layers */
+  #skills > .container {
+    position: relative;
+    z-index: 1;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    #skills::before {
+      animation: none;
+      background-position: 50% 50%;
+    }
+    #skills::after {
+      animation: none;
+    }
+  }
+}
