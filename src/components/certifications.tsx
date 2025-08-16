@@ -25,7 +25,7 @@ export default function Certifications() {
   return (
     <Section id="certifications">
       <div className="text-center space-y-4 mb-12">
-        <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">Certifications & Awards</h2>
+        <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">Certifications &amp; Awards</h2>
         <p className="max-w-[700px] mx-auto text-muted-foreground md:text-xl/relaxed">
           Recognition of my dedication and expertise in the field of VLSI and digital design.
         </p>
