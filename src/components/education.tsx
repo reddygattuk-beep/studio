@@ -1,17 +1,51 @@
 import { Section } from "./section"
+import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card"
+import { Badge } from "@/components/ui/badge"
+import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area"
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip"
+import Image from "next/image"
 
 const educationHistory = [
   {
-    degree: "Master of Science in Electrical & Computer Engineering",
-    institution: "University of Techland",
-    period: "2018 - 2020",
-    description: "Specialized in VLSI Design and Computer Architecture. Thesis on low-power asynchronous circuit design.",
+    institution: "Illinois Institute of Technology",
+    degree: "M.S. in Electrical & Computer Engineering (VLSI & Microelectronics)",
+    period: "Aug 2023 – May 2025",
+    logo: "https://placehold.co/100x100.png",
+    dataAiHint: "university logo",
+    courses: [
+      { id: "ECE 425", name: "Physical and Logical Design of Computers" },
+      { id: "ECE 429", name: "Introduction to VLSI Design" },
+      { id: "ECE 742", name: "High-Performance Computer Architecture" },
+      { id: "ECE 525", name: "Low Power VLSI" },
+      { id: "ECE 530", name: "Advanced VLSI Design" },
+      { id: "ECE 587", name: "ASIC/FPGA Design" },
+      { id: "ECE 529", name: "Digital Signal Processor Architecture" },
+      { id: "ECE 588", name: "Digital System Design with FPGAs" },
+      { id: "ECE 590", name: "Advanced Digital Systems" },
+      { id: "ECE 579", name: "VLSI System Testing" },
+    ],
   },
   {
-    degree: "Bachelor of Science in Electronics Engineering",
-    institution: "State Engineering College",
-    period: "2014 - 2018",
-    description: "Graduated with honors. Final year project involved designing and implementing an FPGA-based traffic light controller.",
+    institution: "JNTU",
+    degree: "B.Tech in Electronics & Communication Engineering",
+    period: "Jun 2019 – Aug 2023",
+    grade: "Grade: A- First Class",
+    logo: "https://placehold.co/100x100.png",
+    dataAiHint: "university seal",
+    courses: [
+      { id: "Problem Solving", name: "Programming for Problem Solving" },
+      { id: "BEE", name: "Basic Electrical Engineering" },
+      { id: "EDC", name: "Electronic Devices and Circuits" },
+      { id: "Analog", name: "Analog Circuits" },
+      { id: "ECA", name: "Electronic Circuit Analysis" },
+      { id: "VLSI Design", name: "VLSI Design" },
+      { id: "Low Power VLSI", name: "Low Power VLSI" },
+      { id: "Linear IC", name: "Linear IC Applications" },
+      { id: "Digital Logic", name: "Digital Logic Design" },
+      { id: "Digital System", name: "Digital System Design" },
+      { id: "MP&uC", name: "Microprocessors & Microcontrollers" },
+      { id: "COA", name: "Computer Organization and Architecture" },
+    ],
   },
 ]
 
@@ -24,24 +58,45 @@ export default function Education() {
           My academic journey and foundation in engineering.
         </p>
       </div>
-      <div className="relative">
-        <div className="absolute left-1/2 top-0 bottom-0 w-0.5 bg-border/50 hidden md:block"></div>
-        {educationHistory.map((edu, index) => (
-          <div key={index} className="relative mb-12 md:mb-16">
-            <div className="hidden md:block absolute top-1/2 left-1/2 w-4 h-4 bg-primary rounded-full transform -translate-x-1/2 -translate-y-1/2 ring-4 ring-background"></div>
-            <div className={`flex flex-col md:flex-row items-center ${index % 2 === 0 ? 'md:flex-row-reverse' : ''}`}>
-              <div className="md:w-5/12"></div>
-              <div className="md:w-1/12"></div>
-              <div className="w-full md:w-6/12">
-                <div className="glassmorphic-card p-6 motion-safe:animate-in motion-safe:fade-in motion-safe:slide-in-from-bottom-8 duration-500">
-                  <p className="text-sm text-muted-foreground mb-1">{edu.period}</p>
-                  <h3 className="text-xl font-bold text-primary">{edu.degree}</h3>
-                  <h4 className="font-semibold text-lg mb-2">{edu.institution}</h4>
-                  <p className="text-sm text-muted-foreground">{edu.description}</p>
-                </div>
+      <div className="grid gap-8 md:grid-cols-1 lg:grid-cols-2 max-w-5xl mx-auto">
+        {educationHistory.map((edu) => (
+          <Card key={edu.institution} className="glassmorphic-card w-full">
+            <CardHeader className="flex flex-row items-start gap-4">
+              <Image
+                src={edu.logo}
+                alt={`${edu.institution} logo`}
+                width={60}
+                height={60}
+                className="rounded-full border p-1 object-contain grayscale transition-all duration-300 hover:grayscale-0"
+                data-ai-hint={edu.dataAiHint}
+              />
+              <div className="flex-1">
+                <CardTitle className="text-2xl">{edu.institution}</CardTitle>
+                <CardDescription className="text-primary">{edu.degree}</CardDescription>
+                <p className="text-sm text-muted-foreground mt-1">{edu.period} {edu.grade && `• ${edu.grade}`}</p>
               </div>
-            </div>
-          </div>
+            </CardHeader>
+            <CardContent>
+              <h4 className="font-semibold mb-3 text-muted-foreground">Relevant Coursework:</h4>
+              <TooltipProvider>
+                <ScrollArea className="w-full whitespace-nowrap">
+                  <div className="flex space-x-2 pb-4">
+                    {edu.courses.map((course) => (
+                      <Tooltip key={course.id}>
+                        <TooltipTrigger asChild>
+                          <Badge variant="secondary" className="cursor-default">{course.id}</Badge>
+                        </TooltipTrigger>
+                        <TooltipContent>
+                          <p>{course.name}</p>
+                        </TooltipContent>
+                      </Tooltip>
+                    ))}
+                  </div>
+                  <ScrollBar orientation="horizontal" />
+                </ScrollArea>
+              </TooltipProvider>
+            </CardContent>
+          </Card>
         ))}
       </div>
     </Section>
