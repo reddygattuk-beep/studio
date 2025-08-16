@@ -1,4 +1,3 @@
-
 "use client";
 
 import { useState, useMemo } from 'react';
@@ -54,6 +53,8 @@ const allCourses = [
     { university: "JNTUH", id: "Digital System", name: "Digital System Design" },
     { university: "JNTUH", id: "MP&uC", name: "Microprocessors & Microcontrollers" },
     { university: "JNTUH", id: "COA", name: "Computer Organization and Architecture" },
+    { university: "JNTUH", id: "DSP", name: "Digital Signal Processing" },
+    { university: "JNTUH", id: "Controls", name: "Control Systems" },
 ];
 
 const CourseworkModal = ({ universityShortName }: { universityShortName: string }) => {
