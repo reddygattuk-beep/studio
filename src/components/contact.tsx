@@ -29,6 +29,11 @@ export default function Contact() {
                     <Linkedin className="mr-2" /> LinkedIn
                 </Link>
             </Button>
+            <Button asChild size="lg" variant="outline" className="glassmorphic-card">
+                <Link href="https://github.com/keshuH" target="_blank">
+                    <Github className="mr-2" /> GitHub
+                </Link>
+            </Button>
         </div>
 
         <form className="space-y-6" onSubmit={(e) => e.preventDefault()}>
