@@ -3,11 +3,12 @@
 import * as React from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Section } from "./section"
-import { Code, GitMerge, FileCheck2, Zap, Microscope, BrainCircuit, MemoryStick, Terminal, ShieldCheck, FileText, Brain, Network, Layers, Timer, Power, CheckSquare, Bot, DraftingCompass } from "lucide-react"
+import { Code, GitMerge, FileCheck2, Zap, Microscope, BrainCircuit, MemoryStick, Terminal, ShieldCheck, FileText, Brain, Network, Layers, Timer, Power, CheckSquare, Bot, DraftingCompass, BookOpen, Cpu, Copy, Check } from "lucide-react"
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { AnimatePresence, motion } from 'framer-motion';
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
+import { useToast } from "@/hooks/use-toast";
 
 const skillsData = {
   "HDL & RTL Design": {
@@ -48,9 +49,113 @@ const skillsData = {
   "Programming & Scripting": {
     icon: Code,
     items: ["Python", "TCL", "Bash", "EDA Automation"],
-    tags: ["Design Verification", "Physical Design"],
+    tags: ["Design Verification", "Physical Design", "RTL"],
   },
 };
+
+const rtlSkillsData = [
+  {
+    title: "RTL Fundamentals",
+    category: "Fundamentals",
+    icon: BookOpen,
+    content: [
+      { item: "Verilog/SystemVerilog for synthesizable RTL", tooltip: "Focus on synthesizable constructs and best practices." },
+      { item: "FSM design (Mealy/Moore), pipelines", tooltip: "Designing state machines and pipelined architectures for performance." },
+      { item: "valid/ready handshakes", tooltip: "Standard protocol for flow control between modules." },
+      { item: "Parameterization (params, generate)", tooltip: "Creating flexible and reusable RTL modules." },
+      { item: "Clocking/reset strategies (sync/async)", tooltip: "Designing robust clocking and reset schemes." },
+    ]
+  },
+  {
+    title: "Microarchitecture",
+    category: "Microarchitecture",
+    icon: Cpu,
+    content: [
+      { item: "Spec → block diagram → RTL plan", tooltip: "Translating specifications into a detailed microarchitecture plan." },
+      { item: "Datapaths, control-path separation", tooltip: "Designing clean and efficient data and control paths." },
+      { item: "FIFOs, arbiters, counters", tooltip: "Implementing common building blocks for complex systems." },
+      { item: "Latency/throughput trade-offs", tooltip: "Analyzing and optimizing for performance bottlenecks." },
+      { item: "X-safe coding; blocking vs nonblocking", tooltip: "Writing robust RTL that is resilient to unknown states." },
+    ]
+  },
+  {
+    title: "Low-Power RTL",
+    category: "Low-Power",
+    icon: Power,
+    content: [
+      { item: "Clock gating enables; operand isolation", tooltip: "Techniques to reduce dynamic power consumption." },
+      { item: "Hooks for power domains (UPF/CPF)", tooltip: "Adding necessary logic for power management." },
+      { item: "Multi-Vt/multi-VDD hooks", tooltip: "Designing for multiple voltage and threshold domains." },
+      { item: "Glitch avoidance and bus parking", tooltip: "Minimizing unnecessary switching activity." },
+    ]
+  },
+  {
+    title: "Quality & Static Checks",
+    category: "Quality",
+    icon: ShieldCheck,
+    content: [
+      { item: "Lint (SpyGlass/AscentLint) zero-error", tooltip: "Ensuring code quality with static analysis tools." },
+      { item: "CDC/RDC setup & disciplined waivers", tooltip: "Managing clock and reset domain crossings." },
+      { item: "Synthesis sanity (DC/Genus)", tooltip: "Checking for issues like inferred latches and multi-drivers." },
+      { item: "X-propagation awareness", tooltip: "Understanding and mitigating the impact of unknown states." },
+    ]
+  },
+  {
+    title: "Verification-Readiness",
+    category: "Interfaces",
+    icon: FileCheck2,
+    content: [
+      { item: "UVM-friendly interfaces; SVA hooks", tooltip: "Designing RTL with verification in mind." },
+      { item: "Reference models alignment", tooltip: "Ensuring RTL behavior matches the golden reference model." },
+      { item: "Functional coverage hooks", tooltip: "Adding assertions and coverpoints for verification." },
+      { item: "Register maps (CSR/RAL)", tooltip: "Defining and managing control and status registers." },
+    ]
+  },
+    {
+    title: "Tools & Environments",
+    category: "Automation",
+    icon: Terminal,
+    content: [
+        { item: "Simulators: Xcelium, VCS, Questa", tooltip: "Running regressions and debugging issues." },
+        { item: "Synthesis: Synopsys DC, Cadence Genus", tooltip: "Synthesizing RTL to gate-level netlists." },
+        { item: "Debug: Verdi, SimVision", tooltip: "Analyzing waveforms and debugging designs." },
+        { item: "PnR awareness & SDC handoff", tooltip: "Understanding physical design constraints." },
+    ]
+  },
+  {
+    title: "Protocols & Interfaces",
+    category: "Interfaces",
+    icon: Network,
+    content: [
+      { item: "AMBA AXI4/AXI4-Lite/AHB/APB", tooltip: "Standard on-chip bus protocols." },
+      { item: "Async FIFOs, CDC bridges", tooltip: "Handling data transfer between different clock domains." },
+      { item: "I2C/SPI/UART", tooltip: "Common serial communication protocols." },
+      { item: "PCIe, DDR, Ethernet/USB basics", tooltip: "Familiarity with high-speed interfaces." },
+    ]
+  },
+    {
+    title: "Automation & Productivity",
+    category: "Automation",
+    icon: Bot,
+    content: [
+        { item: "Python/Tcl/Bash for automation", tooltip: "Scripting for builds, simulations, and report extraction." },
+        { item: "Make/CMake; regression orchestration", tooltip: "Managing complex build and regression flows." },
+        { item: "Template generators", tooltip: "Automating the creation of boilerplate code." },
+        { item: "Pre-commit hooks; lint in CI", tooltip: "Enforcing code quality standards automatically." },
+    ]
+  },
+  {
+    title: "Deliverables & Metrics",
+    category: "Deliverables",
+    icon: FileText,
+    content: [
+      { item: "RTL spec, microarchitecture doc", tooltip: "Clear and comprehensive design documentation." },
+      { item: "Clean lint/CDC reports", tooltip: "Ensuring high-quality, robust RTL." },
+      { item: "Synthesis QoR (area/timing/power)", tooltip: "Meeting performance, power, and area targets." },
+      { item: "Code/functional/assertion coverage", tooltip: "Ensuring thorough verification." },
+    ]
+  }
+];
 
 const dvSkillsData = [
     {
@@ -212,6 +317,14 @@ export default function Skills() {
     return [];
   }, [activeFilter]);
 
+  const filteredRtlSkills = React.useMemo(() => {
+    if (activeFilter === "All" || activeFilter === "RTL") {
+        return rtlSkillsData;
+    }
+    return [];
+  }, [activeFilter]);
+
+
   const cardVariants = {
     hidden: { opacity: 0, y: 20 },
     visible: (i: number) => ({
@@ -250,7 +363,7 @@ export default function Skills() {
 
         <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
           <AnimatePresence>
-            {(activeFilter !== "Design Verification" && activeFilter !== "Physical Design") && filteredSkills.map(([category, details], index) => (
+            {(activeFilter !== "Design Verification" && activeFilter !== "Physical Design" && activeFilter !== "RTL") && filteredSkills.map(([category, details], index) => (
               <motion.div
                 key={category}
                 variants={cardVariants}
@@ -278,6 +391,45 @@ export default function Skills() {
                   </CardContent>
                 </Card>
               </motion.div>
+            ))}
+            {filteredRtlSkills.map((skill, index) => (
+                <motion.div
+                    key={skill.title}
+                    variants={cardVariants}
+                    initial="hidden"
+                    animate="visible"
+                    exit="hidden"
+                    custom={index}
+                    layout
+                >
+                <Card className="glassmorphic-card h-full transition-all duration-300 hover:shadow-primary/20 hover:-translate-y-1">
+                    <CardHeader>
+                    <CardTitle className="flex items-center gap-3 text-xl">
+                        <skill.icon className="w-7 h-7 text-primary" />
+                        {skill.title}
+                    </CardTitle>
+                    </CardHeader>
+                    <CardContent>
+                    <ul className="space-y-2.5 text-sm text-muted-foreground">
+                        <TooltipProvider>
+                        {skill.content.map(item => (
+                            <li key={item.item} className="flex items-start gap-2">
+                            <Cpu className="w-4 h-4 mt-0.5 text-accent flex-shrink-0" />
+                            <Tooltip>
+                                <TooltipTrigger asChild>
+                                <span className="cursor-default border-b border-dashed border-muted-foreground/30">{item.item}</span>
+                                </TooltipTrigger>
+                                <TooltipContent>
+                                <p className="max-w-xs">{item.tooltip}</p>
+                                </TooltipContent>
+                            </Tooltip>
+                            </li>
+                        ))}
+                        </TooltipProvider>
+                    </ul>
+                    </CardContent>
+                </Card>
+                </motion.div>
             ))}
             {filteredPdSkills.map((skill, index) => (
                 <motion.div

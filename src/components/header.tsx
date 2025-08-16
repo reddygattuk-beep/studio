@@ -9,7 +9,6 @@ import { Sheet, SheetContent, SheetTrigger, SheetClose } from "@/components/ui/s
 
 const navItems = [
   { name: "Skills", href: "#skills" },
-  { name: "RTL Design", href: "#rtl" },
   { name: "Projects", href: "#projects" },
   { name: "Experience", href: "#experience" },
   { name: "Education", href: "#education" },
