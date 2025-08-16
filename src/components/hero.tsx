@@ -11,10 +11,8 @@ export default function Hero() {
             <Image
               src="https://9du0c01mm4og13n7.public.blob.vercel-storage.com/WhatsApp%20Image%202025-08-16%20at%2013.41.42_ed2b7a57.jpg"
               alt="Keshava Reddygattu"
-              layout="fill"
-              objectFit="cover"
-              objectPosition="center"
-              className="z-0"
+              fill
+              className="z-0 object-cover object-center"
               priority
             />
             <div className="absolute inset-0 z-10 bg-gradient-to-t from-black/20 via-transparent to-black/10" />
@@ -29,10 +27,8 @@ export default function Hero() {
                 <Image
                   src="https://9du0c01mm4og13n7.public.blob.vercel-storage.com/WhatsApp%20Image%202025-08-16%20at%2013.41.42_ed2b7a57.jpg"
                   alt="Keshava Reddygattu"
-                  layout="fill"
-                  objectFit="cover"
-                  objectPosition="center"
-                  className="z-0"
+                  fill
+                  className="z-0 object-cover object-center"
                   priority
                 />
                 <div className="absolute inset-0 z-10 bg-gradient-to-t from-black/20 via-transparent to-black/10" />
