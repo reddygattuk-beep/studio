@@ -7,6 +7,7 @@ import { Code, Cpu, Layers, GitMerge, FileCheck2, Search, Zap, Microscope, Brain
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { AnimatePresence, motion } from 'framer-motion';
+import SkillsBackground from './skills-background';
 
 const VhdlSvg = () => <svg viewBox="0 0 100 100" className="h-6 w-6 text-accent"><text x="50%" y="55%" dominantBaseline="middle" textAnchor="middle" fontSize="30" fontWeight="bold" fill="currentColor">VHDL</text></svg>
 const VerilogSvg = () => <svg viewBox="0 0 100 100" className="h-6 w-6 text-accent"><text x="50%" y="55%" dominantBaseline="middle" textAnchor="middle" fontSize="24" fontWeight="bold" fill="currentColor">SV</text></svg>
@@ -83,59 +84,62 @@ export default function Skills() {
   };
 
   return (
-    <Section id="skills">
-      <div className="text-center space-y-4 mb-12">
-        <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">Technical Skills</h2>
-        <p className="max-w-[800px] mx-auto text-muted-foreground md:text-xl/relaxed">
-          A toolbox of languages, methodologies, and tools I use to build robust digital systems. Filter by domain to see my specialized expertise.
-        </p>
-      </div>
+    <Section id="skills" className="relative overflow-hidden bg-background">
+      <SkillsBackground />
+      <div className="relative z-10">
+        <div className="text-center space-y-4 mb-12">
+          <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">Technical Skills</h2>
+          <p className="max-w-[800px] mx-auto text-muted-foreground md:text-xl/relaxed">
+            A toolbox of languages, methodologies, and tools I use to build robust digital systems. Filter by domain to see my specialized expertise.
+          </p>
+        </div>
 
-      <div className="flex flex-wrap justify-center gap-2 mb-12">
-        {filters.map((filter) => (
-          <Button
-            key={filter}
-            variant={activeFilter === filter ? "default" : "outline"}
-            onClick={() => setActiveFilter(filter)}
-            className={`transition-all duration-300 ${activeFilter === filter ? 'bg-primary text-primary-foreground' : 'glassmorphic-card hover:border-accent'}`}
-          >
-            {filter}
-          </Button>
-        ))}
-      </div>
-
-      <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
-        <AnimatePresence>
-          {filteredSkills.map(([category, details], index) => (
-            <motion.div
-              key={category}
-              variants={cardVariants}
-              initial="hidden"
-              animate="visible"
-              exit="hidden"
-              custom={index}
-              layout
+        <div className="flex flex-wrap justify-center gap-2 mb-12">
+          {filters.map((filter) => (
+            <Button
+              key={filter}
+              variant={activeFilter === filter ? "default" : "outline"}
+              onClick={() => setActiveFilter(filter)}
+              className={`transition-all duration-300 ${activeFilter === filter ? 'bg-primary text-primary-foreground' : 'glassmorphic-card hover:border-accent'}`}
             >
-              <Card className="glassmorphic-card h-full transition-all duration-300 hover:shadow-primary/20 hover:-translate-y-2">
-                <CardHeader>
-                  <CardTitle className="flex items-center gap-3 text-xl">
-                    <details.icon className="w-8 h-8 text-primary" />
-                    {category}
-                  </CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <div className="flex flex-wrap gap-2">
-                    {details.items.map((item) => (
-                       <Badge key={item} variant="secondary" className="group relative cursor-pointer overflow-hidden transition-all duration-300 hover:scale-110 hover:shadow-md">
-                         <span className="transition-all duration-300 group-hover:pr-2">{item}</span>
-                       </Badge>
-                    ))}
-                  </div>
-                </CardContent>
-              </Card>
-            </motion.div>
+              {filter}
+            </Button>
           ))}
-        </AnimatePresence>
+        </div>
+
+        <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+          <AnimatePresence>
+            {filteredSkills.map(([category, details], index) => (
+              <motion.div
+                key={category}
+                variants={cardVariants}
+                initial="hidden"
+                animate="visible"
+                exit="hidden"
+                custom={index}
+                layout
+              >
+                <Card className="glassmorphic-card h-full transition-all duration-300 hover:shadow-primary/20 hover:-translate-y-2">
+                  <CardHeader>
+                    <CardTitle className="flex items-center gap-3 text-xl">
+                      <details.icon className="w-8 h-8 text-primary" />
+                      {category}
+                    </CardTitle>
+                  </CardHeader>
+                  <CardContent>
+                    <div className="flex flex-wrap gap-2">
+                      {details.items.map((item) => (
+                         <Badge key={item} variant="secondary" className="group relative cursor-pointer overflow-hidden transition-all duration-300 hover:scale-110 hover:shadow-md">
+                           <span className="transition-all duration-300 group-hover:pr-2">{item}</span>
+                         </Badge>
+                      ))}
+                    </div>
+                  </CardContent>
+                </Card>
+              </motion.div>
+            ))}
+          </AnimatePresence>
+        </div>
       </div>
     </Section>
   )
