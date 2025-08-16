@@ -83,12 +83,7 @@
 
   @keyframes line-fade {
     0%, 100% { opacity: 0; }
-    50% { opacity: 0.12; }
-  }
-  
-  @keyframes line-fade-2 {
-    0%, 100% { opacity: 0.08; }
-    50% { opacity: 0; }
+    50% { opacity: 0.15; }
   }
 
   #skills {
@@ -104,36 +99,28 @@
     z-index: 0;
     
     --dot-size: 2px;
-    --dot-color: hsl(var(--accent) / 0.8);
-    --line-color: hsl(var(--primary) / 0.12);
+    --dot-color: hsl(var(--foreground) / 0.8);
+    --line-color: hsl(var(--foreground) / 0.15);
 
     background-image:
-      /* Fading Lines Layer 1 */
+      /* Fading Lines */
       linear-gradient(45deg, var(--line-color) 1px, transparent 0),
       linear-gradient(-45deg, var(--line-color) 1px, transparent 0),
-      /* Fading Lines Layer 2 */
-      linear-gradient(115deg, hsl(var(--primary) / 0.08) 1px, transparent 0),
-      linear-gradient(-115deg, hsl(var(--primary) / 0.08) 1px, transparent 0),
       /* Particle Dots */
-      radial-gradient(var(--dot-size) at 10% 20%, var(--dot-color), transparent),
-      radial-gradient(var(--dot-size) at 80% 30%, var(--dot-color), transparent),
-      radial-gradient(var(--dot-size) at 35% 80%, var(--dot-color), transparent),
-      radial-gradient(var(--dot-size) at 50% 50%, var(--dot-color), transparent),
-      radial-gradient(calc(var(--dot-size) - 1px) at 22% 65%, var(--dot-color), transparent),
-      radial-gradient(calc(var(--dot-size) - 1px) at 90% 85%, var(--dot-color), transparent),
-      radial-gradient(calc(var(--dot-size) - 1px) at 5% 95%, var(--dot-color), transparent);
+      radial-gradient(var(--dot-size) at 15% 30%, var(--dot-color), transparent),
+      radial-gradient(var(--dot-size) at 85% 70%, var(--dot-color), transparent),
+      radial-gradient(calc(var(--dot-size) - 1px) at 40% 80%, var(--dot-color), transparent),
+      radial-gradient(calc(var(--dot-size) - 1px) at 50% 50%, var(--dot-color), transparent);
 
     background-size:
       100px 100px, 100px 100px,
-      80px 80px, 80px 80px,
-      200px 200px, 200px 200px, 200px 200px, 200px 200px, 300px 300px, 300px 300px, 300px 300px;
+      200px 200px, 200px 200px, 300px 300px, 300px 300px;
       
     background-position: 0 0;
 
     animation: 
       particle-drift 40s linear infinite,
-      line-fade 15s linear infinite,
-      line-fade-2 25s linear infinite reverse;
+      line-fade 15s linear infinite;
   }
 
   #skills > .container {
