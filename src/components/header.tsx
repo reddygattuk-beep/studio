@@ -12,6 +12,7 @@ const navItems = [
   { name: "Projects", href: "#projects" },
   { name: "Experience", href: "#experience" },
   { name: "Education", href: "#education" },
+  { name: "Resume", href: "/resume.pdf", target: "_blank" },
   { name: "Contact", href: "#contact" },
 ];
 
@@ -23,7 +24,7 @@ export default function Header() {
     const handleScroll = () => {
       setScrolled(window.scrollY > 10);
       
-      const sections = navItems.map(item => document.getElementById(item.href.substring(1))).filter(Boolean);
+      const sections = navItems.map(item => document.getElementById(item.href.substring(1))).filter(item => item && item.id !== 'resume.pdf');
       let currentSection = "";
       
       sections.forEach(section => {
@@ -54,7 +55,11 @@ export default function Header() {
         </Link>
         <nav className="hidden md:flex items-center gap-6">
           {navItems.map((item) => (
-            <Link key={item.name} href={item.href} className={cn(
+            <Link 
+              key={item.name} 
+              href={item.href} 
+              target={item.target}
+              className={cn(
               "text-sm font-medium transition-colors hover:text-primary",
               activeSection === item.href.substring(1) ? "text-primary" : "text-muted-foreground"
             )}>
@@ -87,7 +92,10 @@ export default function Header() {
                 <nav className="flex flex-col gap-6">
                   {navItems.map((item) => (
                     <SheetClose key={item.name} asChild>
-                      <Link href={item.href} className="text-lg font-medium text-foreground hover:text-primary">
+                      <Link 
+                        href={item.href} 
+                        target={item.target}
+                        className="text-lg font-medium text-foreground hover:text-primary">
                         {item.name}
                       </Link>
                     </SheetClose>
