@@ -118,7 +118,7 @@ const projects = [
     tags: ["Cadence Virtuoso", "Transient Sim", "Power/Delay", "PD/Flow"],
     highlights: ["Demonstrated that NAND/NOR gates are inherently slower than inverters.", "Analyzed how capacitive load increases both delay and power consumption."],
     modalDetails: "Features plots illustrating the speed-power trade-offs for fundamental CMOS logic gates, providing a solid foundation for performance estimation.",
-    image: "https://placehold.co/600x400.png",
+    image: "https://9du0c01mm4og13n7.public.blob.vercel-storage.com/CMOS.png",
     dataAiHint: "simulation waveform"
   },
   {
