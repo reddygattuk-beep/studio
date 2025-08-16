@@ -1,3 +1,4 @@
+
 "use client"
 
 import Link from "next/link"
@@ -57,16 +58,15 @@ export default function Hero() {
 
           {/* Right Column: Text Content */}
           <div className="text-center md:text-left space-y-6">
-            <div className="space-y-2">
-              <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold tracking-tight">
-                <span className="inline-block animate-wave origin-[70%_70%]">👋</span> Hey
-              </h1>
-              <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold tracking-tight">
-                I am <span className="relative inline-block">Keshava
+            <div className="space-y-4">
+               <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold tracking-tight">
+                <span className="inline-block animate-wave origin-[70%_70%]">👋</span> Hey, I'm <br />
+                <span className="relative inline-block bg-clip-text text-transparent bg-gradient-to-r from-primary to-accent">
+                  Keshava
                   <span className="absolute bottom-[-8px] left-0 h-1.5 w-full bg-gradient-to-r from-primary to-accent rounded-full"></span>
                 </span>
               </h1>
-              <p className="text-accent text-xl sm:text-2xl font-medium pt-2">
+              <p className="text-accent text-xl sm:text-2xl font-medium">
                 VLSI Engineer
               </p>
             </div>
@@ -153,3 +153,5 @@ export default function Hero() {
     </section>
   )
 }
+
+    
