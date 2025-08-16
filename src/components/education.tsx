@@ -26,7 +26,7 @@ const educationHistory = [
     ],
   },
   {
-    institution: "JNTU",
+    institution: "Jawaharlal Nehru Technological University Hyderabad",
     degree: "B.Tech in Electronics & Communication Engineering",
     period: "Jun 2019 – Aug 2023",
     grade: "Grade: A- First Class",
@@ -72,7 +72,7 @@ export default function Education() {
                 data-ai-hint={edu.dataAiHint}
               />
               <div className="flex-1">
-                <CardTitle className={`text-2xl ${edu.institution === "Illinois Institute of Technology" ? 'bg-clip-text text-transparent bg-gradient-to-r from-red-500 to-red-700' : ''}`}>{edu.institution}</CardTitle>
+                <CardTitle className={`text-2xl ${edu.institution === "Illinois Institute of Technology" ? 'bg-clip-text text-transparent bg-gradient-to-r from-red-500 to-red-700' : 'bg-clip-text text-transparent bg-gradient-to-r from-zinc-400 to-white'}`}>{edu.institution}</CardTitle>
                 <CardDescription className="text-primary">{edu.degree}</CardDescription>
                 <p className="text-sm text-muted-foreground mt-1">{edu.period} {edu.grade && `• ${edu.grade}`}</p>
               </div>
