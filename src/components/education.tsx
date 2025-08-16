@@ -3,7 +3,7 @@
 
 import { useState, useMemo } from 'react';
 import { Section } from "./section"
-import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card"
+import { Card, CardContent, CardHeader, CardTitle, CardDescription, CardFooter } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import Image from "next/image"
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
@@ -18,6 +18,7 @@ const educationHistory = [
     period: "Aug 2023 – May 2025",
     logo: "https://9du0c01mm4og13n7.public.blob.vercel-storage.com/iit%20logo.webp",
     dataAiHint: "university logo",
+    shortName: "IIT",
   },
   {
     institution: "Jawaharlal Nehru Technological University Hyderabad",
@@ -26,6 +27,7 @@ const educationHistory = [
     grade: "Grade: A- First Class",
     logo: "https://9du0c01mm4og13n7.public.blob.vercel-storage.com/jntuh%20logo.jpg",
     dataAiHint: "university seal",
+    shortName: "JNTUH",
   },
 ]
 
@@ -54,19 +56,68 @@ const allCourses = [
     { university: "JNTUH", id: "COA", name: "Computer Organization and Architecture" },
 ];
 
+const CourseworkModal = ({ universityShortName }: { universityShortName: string }) => {
+    const [searchTerm, setSearchTerm] = useState('');
+  
+    const universityCourses = useMemo(() => {
+        return allCourses.filter(course => course.university === universityShortName);
+    }, [universityShortName]);
+
+    const filteredCourses = useMemo(() => {
+      if (!searchTerm) return universityCourses;
+      const lowercasedFilter = searchTerm.toLowerCase();
+      return universityCourses.filter(course =>
+        course.name.toLowerCase().includes(lowercasedFilter) ||
+        course.id.toLowerCase().includes(lowercasedFilter)
+      );
+    }, [searchTerm, universityCourses]);
+  
+    return (
+      <Dialog>
+        <DialogTrigger asChild>
+          <Button 
+            size="sm" 
+            className="font-bold rounded-full bg-gradient-to-r from-primary to-accent text-primary-foreground transition-all duration-300 hover:shadow-lg hover:shadow-accent/50 hover:scale-105 mt-4"
+            role="button"
+          >
+            View Coursework
+          </Button>
+        </DialogTrigger>
+        <DialogContent className="max-w-2xl w-full bg-background/80 backdrop-blur-lg glassmorphic-card">
+          <DialogHeader>
+            <DialogTitle className="text-2xl text-primary">Coursework</DialogTitle>
+          </DialogHeader>
+          <div className="relative my-4">
+            <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
+            <Input 
+              placeholder="Filter courses..."
+              value={searchTerm}
+              onChange={(e) => setSearchTerm(e.target.value)}
+              className="pl-10"
+            />
+          </div>
+          <div className="max-h-[60vh] overflow-y-auto pr-4">
+            <ul className="space-y-3">
+              {filteredCourses.map(course => (
+                <li key={`${course.university}-${course.id}`} className="flex items-center justify-between text-sm">
+                  <div className="flex-grow">
+                    <span className="font-semibold text-foreground">{course.id}:</span>
+                    <span className="text-muted-foreground ml-2">{course.name}</span>
+                  </div>
+                  <Badge variant={course.university === 'IIT' ? 'default' : 'secondary'} className="ml-4 flex-shrink-0">
+                    {course.university}
+                  </Badge>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </DialogContent>
+      </Dialog>
+    );
+  };
+  
 
 export default function Education() {
-  const [searchTerm, setSearchTerm] = useState('');
-
-  const filteredCourses = useMemo(() => {
-    if (!searchTerm) return allCourses;
-    const lowercasedFilter = searchTerm.toLowerCase();
-    return allCourses.filter(course =>
-      course.name.toLowerCase().includes(lowercasedFilter) ||
-      course.id.toLowerCase().includes(lowercasedFilter)
-    );
-  }, [searchTerm]);
-
   return (
     <Section id="education">
       <div className="text-center space-y-4 mb-12">
@@ -95,59 +146,17 @@ export default function Education() {
                 <p className="text-sm text-muted-foreground mt-1">{edu.period} {edu.grade && `• ${edu.grade}`}</p>
               </div>
             </CardHeader>
-            <CardContent className="flex-grow flex flex-col justify-end">
+            <CardContent className="flex-grow flex flex-col justify-between">
                 <p className="text-xs text-muted-foreground">
                     {edu.institution === "Illinois Institute of Technology" ? "Graduate coursework in VLSI, SoC, and ML Acceleration." : "Undergraduate coursework in ECE fundamentals."}
                 </p>
+                <div className="mt-4">
+                    <CourseworkModal universityShortName={edu.shortName} />
+                </div>
             </CardContent>
           </Card>
         ))}
       </div>
-
-       <div className="mt-12 text-center">
-            <Dialog>
-                <DialogTrigger asChild>
-                    <Button 
-                        size="lg" 
-                        className="font-bold rounded-full bg-gradient-to-r from-primary to-accent text-primary-foreground transition-all duration-300 hover:shadow-lg hover:shadow-accent/50 hover:scale-105"
-                        role="button"
-                    >
-                        View All Coursework
-                    </Button>
-                </DialogTrigger>
-                <DialogContent className="max-w-2xl w-full bg-background/80 backdrop-blur-lg glassmorphic-card">
-                    <DialogHeader>
-                        <DialogTitle className="text-2xl text-primary">Coursework</DialogTitle>
-                    </DialogHeader>
-                    <div className="relative my-4">
-                        <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
-                        <Input 
-                            placeholder="Filter courses..."
-                            value={searchTerm}
-                            onChange={(e) => setSearchTerm(e.target.value)}
-                            className="pl-10"
-                        />
-                    </div>
-                    <div className="max-h-[60vh] overflow-y-auto pr-4">
-                        <ul className="space-y-3">
-                            {filteredCourses.map(course => (
-                                <li key={`${course.university}-${course.id}`} className="flex items-center justify-between text-sm">
-                                    <div className="flex-grow">
-                                      <span className="font-semibold text-foreground">{course.id}:</span>
-                                      <span className="text-muted-foreground ml-2">{course.name}</span>
-                                    </div>
-                                    <Badge variant={course.university === 'IIT' ? 'default' : 'secondary'} className="ml-4 flex-shrink-0">
-                                      {course.university}
-                                    </Badge>
-                                </li>
-                            ))}
-                        </ul>
-                    </div>
-                </DialogContent>
-            </Dialog>
-        </div>
     </Section>
   )
 }
-
-    
