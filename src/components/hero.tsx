@@ -59,14 +59,19 @@ export default function Hero() {
           <div className="text-center md:text-left space-y-6">
             <div className="space-y-4">
                <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold tracking-tight">
-                <span className="inline-block animate-wave origin-[70%_70%]">👋</span> Hey, I'm <br />
-                <span className="relative inline-block bg-clip-text text-transparent bg-gradient-to-r from-primary to-accent">
+                <span className="inline-block animate-wave origin-[70%_70%]">👋</span> Hey, I'm{" "}
+                <span className="bg-clip-text text-transparent bg-gradient-to-r from-primary to-accent">
                   Keshava
                 </span>
               </h1>
               <p className="text-accent text-xl sm:text-2xl font-medium">
                 VLSI Engineer
               </p>
+               <blockquote className="mt-4 max-w-lg text-center md:text-left text-muted-foreground italic text-sm md:text-base border-l-2 border-primary pl-4">
+                Give me a problem and a bench; I craft the logic, teach it discipline, and tune its pace.
+                <br />
+                Flip the switch—it wakes quietly and runs like it means it.
+              </blockquote>
             </div>
             <div className="flex flex-col sm:flex-row items-center justify-center md:justify-start gap-4">
               <Button asChild size="lg" className="group bg-gradient-to-r from-primary to-accent text-primary-foreground border-none">
