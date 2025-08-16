@@ -88,8 +88,8 @@ const projects = [
       "The combined gating strategy yielded the highest total power savings while meeting timing constraints.",
     ],
     modalDetails: "A comparative analysis of the baseline ALU versus the clock-gated, power-gated, and combined-gating versions, with detailed power reports and timing summaries from Vivado.",
-    image: "https://placehold.co/600x400.png",
-    dataAiHint: "power savings graph"
+    image: "https://9du0c01mm4og13n7.public.blob.vercel-storage.com/Low%20power.png",
+    dataAiHint: "power gating diagram"
   },
   {
     title: "MTCMOS-Based Power Gating for Low-Leakage Circuits",
