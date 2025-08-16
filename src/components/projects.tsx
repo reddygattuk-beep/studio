@@ -22,7 +22,7 @@ const projects = [
       "Ensured 100% RTL-to-post-layout equivalence using Synopsys Formality.",
     ],
     modalDetails: "In-depth analysis of adder trade-offs (Carry-Ripple, Carry-Lookahead, Carry-Select, Carry-Save) and detailed notes on achieving timing closure for each architecture. The new ALU design demonstrates significant performance improvements under specific instruction loads.",
-    image: "https://placehold.co/600x400.png",
+    image: "https://9du0c01mm4og13n7.public.blob.vercel-storage.com/32%20bit%20CPU.png",
     dataAiHint: "CPU core"
   },
   {
