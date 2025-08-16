@@ -4,6 +4,8 @@ import { Badge } from "@/components/ui/badge"
 import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area"
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip"
 import Image from "next/image"
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion"
+import { Button } from "@/components/ui/button"
 
 const educationHistory = [
   {
@@ -60,42 +62,69 @@ export default function Education() {
       </div>
       <div className="grid gap-8 md:grid-cols-1 lg:grid-cols-2 max-w-5xl mx-auto">
         {educationHistory.map((edu) => (
-          <Card key={edu.institution} className="glassmorphic-card w-full">
+          <Card key={edu.institution} className="glassmorphic-card w-full flex flex-col">
             <CardHeader className="flex flex-row items-start gap-4">
               <Image
                 src={edu.logo}
                 alt={`${edu.institution} logo`}
                 width={60}
                 height={60}
-                className={`rounded-full border p-1 object-contain transition-all duration-300 ${edu.institution === "Illinois Institute of Technology" ? "grayscale-0" : "grayscale hover:grayscale-0"}`}
-                style={edu.institution === "Illinois Institute of Technology" ? { filter: 'sepia(100%) hue-rotate(-50deg) saturate(1000%)' } : {}}
+                className="rounded-full border p-1 object-contain transition-all duration-300"
                 data-ai-hint={edu.dataAiHint}
               />
               <div className="flex-1">
-                <CardTitle className={`text-2xl ${edu.institution === "Illinois Institute of Technology" ? 'bg-clip-text text-transparent bg-gradient-to-r from-red-500 to-red-700' : 'bg-clip-text text-transparent bg-gradient-to-r from-zinc-400 to-white'}`}>{edu.institution}</CardTitle>
+                <CardTitle className={`${edu.institution === "Illinois Institute of Technology" ? 'bg-clip-text text-transparent bg-gradient-to-r from-red-500 to-red-700' : 'bg-clip-text text-transparent bg-gradient-to-r from-zinc-400 to-white'}`}>{edu.institution}</CardTitle>
                 <CardDescription className="text-primary">{edu.degree}</CardDescription>
                 <p className="text-sm text-muted-foreground mt-1">{edu.period} {edu.grade && `• ${edu.grade}`}</p>
               </div>
             </CardHeader>
-            <CardContent>
-              <h4 className="font-semibold mb-3 text-muted-foreground">Relevant Coursework:</h4>
-              <TooltipProvider>
-                <ScrollArea className="w-full whitespace-nowrap">
-                  <div className="flex space-x-2 pb-4">
-                    {edu.courses.map((course) => (
-                      <Tooltip key={course.id}>
-                        <TooltipTrigger asChild>
-                          <Badge variant="secondary" className="cursor-default">{course.id}</Badge>
-                        </TooltipTrigger>
-                        <TooltipContent>
-                          <p>{course.name}</p>
-                        </TooltipContent>
-                      </Tooltip>
-                    ))}
-                  </div>
-                  <ScrollBar orientation="horizontal" />
-                </ScrollArea>
-              </TooltipProvider>
+            <CardContent className="flex-grow flex flex-col">
+              {edu.institution === "Illinois Institute of Technology" ? (
+                <Accordion type="single" collapsible className="w-full">
+                  <AccordionItem value="item-1">
+                    <AccordionTrigger>
+                      <Button variant="link" className="p-0 text-muted-foreground">View Coursework</Button>
+                    </AccordionTrigger>
+                    <AccordionContent>
+                      <TooltipProvider>
+                          <div className="flex flex-wrap gap-2 pt-4">
+                            {edu.courses.map((course) => (
+                              <Tooltip key={course.id}>
+                                <TooltipTrigger asChild>
+                                  <Badge variant="secondary" className="cursor-default">{course.id}</Badge>
+                                </TooltipTrigger>
+                                <TooltipContent>
+                                  <p>{course.name}</p>
+                                </TooltipContent>
+                              </Tooltip>
+                            ))}
+                          </div>
+                      </TooltipProvider>
+                    </AccordionContent>
+                  </AccordionItem>
+                </Accordion>
+              ) : (
+                <>
+                  <h4 className="font-semibold mb-3 text-muted-foreground">Relevant Coursework:</h4>
+                  <TooltipProvider>
+                    <ScrollArea className="w-full whitespace-nowrap">
+                      <div className="flex space-x-2 pb-4">
+                        {edu.courses.map((course) => (
+                          <Tooltip key={course.id}>
+                            <TooltipTrigger asChild>
+                              <Badge variant="secondary" className="cursor-default">{course.id}</Badge>
+                            </TooltipTrigger>
+                            <TooltipContent>
+                              <p>{course.name}</p>
+                            </TooltipContent>
+                          </Tooltip>
+                        ))}
+                      </div>
+                      <ScrollBar orientation="horizontal" />
+                    </ScrollArea>
+                  </TooltipProvider>
+                </>
+              )}
             </CardContent>
           </Card>
         ))}
