@@ -3,13 +3,15 @@
 import * as React from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Section } from "./section"
-import { Code, GitMerge, FileCheck2, Zap, Microscope, BrainCircuit, MemoryStick, Terminal, ShieldCheck, FileText, Brain, Network, Layers, Timer, Power, CheckSquare, Bot, DraftingCompass, BookOpen, Cpu, Copy, Check } from "lucide-react"
+import { Code, GitMerge, FileCheck2, Zap, Microscope, BrainCircuit, MemoryStick, Terminal, ShieldCheck, FileText, Brain, Network, Layers, Timer, Power, CheckSquare, Bot, DraftingCompass, BookOpen, Cpu, Copy, Check, Search, Eye } from "lucide-react"
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { AnimatePresence, motion } from 'framer-motion';
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
 import { useToast } from "@/hooks/use-toast";
 import { SkillIcon } from '@/components/skill-icon';
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
+import { Input } from '@/components/ui/input';
 
 const skillsData = {
   "HDL & RTL Design": {
@@ -161,7 +163,7 @@ const rtlSkillsData = [
 const dvSkillsData = [
     {
       title: "Core DV Skills",
-      category: "Design Verification",
+      category: "Core",
       icon: Code,
       content: [
         { item: "SystemVerilog", tooltip: "Used for RTL design, testbenches, and assertions (SVA)." },
@@ -176,7 +178,7 @@ const dvSkillsData = [
     },
     {
       title: "Tools & Flows",
-      category: "Design Verification",
+      category: "Tools",
       icon: Terminal,
       content: [
         { item: "Simulators", tooltip: "Cadence Xcelium, Synopsys VCS, Siemens Questa" },
@@ -190,7 +192,7 @@ const dvSkillsData = [
     },
     {
       title: "Design / Protocol Know-How",
-      category: "Design Verification",
+      category: "Protocols",
       icon: Network,
       content: [
         { item: "AMBA", tooltip: "AXI, AHB, APB - standard on-chip interconnects." },
@@ -203,7 +205,7 @@ const dvSkillsData = [
     },
      {
       title: "Verification Deliverables",
-      category: "Design Verification",
+      category: "Deliverables",
       icon: FileText,
       content: [
         { item: "Verification Plans", tooltip: "Comprehensive documents linking features to verification strategy." },
@@ -215,7 +217,7 @@ const dvSkillsData = [
     },
     {
       title: "Mindset & Collaboration",
-      category: "Design Verification",
+      category: "Mindset",
       icon: Brain,
       content: [
         { item: "Adversarial Thinking", tooltip: "A proactive 'break-it' attitude to find corner-case bugs." },
@@ -292,8 +294,24 @@ const pdSkillsData = [
 
 const filters = ["All", "RTL", "Physical Design", "Design Verification", "Low-Power", "FPGA", "Memory"];
 
+const techStackData = {
+  "Programming Languages": ["C", "C++", "Python"],
+  "Scripting & Automation": ["Tcl", "Bash", "Make / CMake", "Python (EDA automation)"],
+  "EDA Tools": [
+    "Simulation & Debug: Cadence Xcelium / SimVision, Synopsys VCS, Siemens Questa, Verdi, DVE",
+    "Synthesis: Synopsys Design Compiler, Cadence Genus",
+    "Formal: Cadence JasperGold, Synopsys VC Formal",
+    "Physical Design (P&R): Cadence Innovus / Encounter, Synopsys ICC2 / Fusion Compiler",
+    "Timing & Constraints: Synopsys PrimeTime, Cadence Tempus",
+    "Power / EMIR: Cadence Voltus, Ansys RedHawk",
+    "Physical Verification / PEX: Siemens Calibre, Cadence Pegasus, Synopsys StarRC, Cadence QRC",
+    "FPGA: Xilinx Vivado",
+  ]
+};
+
 export default function Skills() {
   const [activeFilter, setActiveFilter] = React.useState("All");
+  const [searchTerm, setSearchTerm] = React.useState("");
 
   const filteredSkills = React.useMemo(() => {
     if (activeFilter === "All") {
@@ -304,26 +322,51 @@ export default function Skills() {
     );
   }, [activeFilter]);
   
+  const dvFilters = ["All", "Core", "Tools", "Protocols", "Deliverables", "Mindset"];
+  const [activeDvFilter, setActiveDvFilter] = React.useState("All");
   const filteredDvSkills = React.useMemo(() => {
-    if (activeFilter === "All" || activeFilter === "Design Verification") {
-        return dvSkillsData;
-    }
-    return [];
-  }, [activeFilter]);
+      const isDvVisible = activeFilter === "All" || activeFilter === "Design Verification";
+      if (!isDvVisible) return [];
+      if (activeDvFilter === "All") return dvSkillsData;
+      return dvSkillsData.filter(skill => skill.category === activeDvFilter);
+  }, [activeFilter, activeDvFilter]);
 
+  const pdFilters = ["All", "Flow", "Timing/Noise", "Power", "Signoff", "Automation"];
+  const [activePdFilter, setActivePdFilter] = React.useState("All");
   const filteredPdSkills = React.useMemo(() => {
-    if (activeFilter === "All" || activeFilter === "Physical Design") {
-        return pdSkillsData;
-    }
-    return [];
-  }, [activeFilter]);
+    const isPdVisible = activeFilter === "All" || activeFilter === "Physical Design";
+    if (!isPdVisible) return [];
+    if (activePdFilter === "All") return pdSkillsData;
+    return pdSkillsData.filter(skill => skill.category === activePdFilter);
+  }, [activeFilter, activePdFilter]);
 
+  const rtlFilters = ["All", "Fundamentals", "Microarchitecture", "Low-Power", "Quality", "Interfaces", "Automation", "Deliverables"];
+  const [activeRtlFilter, setActiveRtlFilter] = React.useState("All");
   const filteredRtlSkills = React.useMemo(() => {
-    if (activeFilter === "All" || activeFilter === "RTL") {
-        return rtlSkillsData;
+    const isRtlVisible = activeFilter === "All" || activeFilter === "RTL";
+    if (!isRtlVisible) return [];
+    if (activeRtlFilter === "All") return rtlSkillsData;
+    return rtlSkillsData.filter(skill => skill.category === activeRtlFilter);
+  }, [activeFilter, activeRtlFilter]);
+
+  const filteredTechStack = React.useMemo(() => {
+    if (!searchTerm) {
+      return techStackData;
     }
-    return [];
-  }, [activeFilter]);
+    const lowercasedFilter = searchTerm.toLowerCase();
+    const filtered: typeof techStackData = {
+        "Programming Languages": [],
+        "Scripting & Automation": [],
+        "EDA Tools": []
+    };
+    for (const category in techStackData) {
+        const catKey = category as keyof typeof techStackData;
+        filtered[catKey] = techStackData[catKey].filter(item =>
+            item.toLowerCase().includes(lowercasedFilter)
+        );
+    }
+    return filtered;
+  }, [searchTerm]);
 
 
   const cardVariants = {
@@ -339,17 +382,61 @@ export default function Skills() {
     })
   };
 
+  const isRtlActive = activeFilter === "All" || activeFilter === "RTL";
+  const isDvActive = activeFilter === "All" || activeFilter === "Design Verification";
+  const isPdActive = activeFilter === "All" || activeFilter === "Physical Design";
+
   return (
     <Section id="skills" className="relative overflow-hidden bg-background">
       <div className="relative z-10">
         <div className="text-center space-y-4 mb-12">
-          <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">Technical Skills</h2>
+          <div className="flex justify-center items-center gap-4 relative">
+             <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">Technical Skills</h2>
+             <Dialog>
+                <DialogTrigger asChild>
+                    <Button variant="outline" className="absolute right-0 top-1/2 -translate-y-1/2 glassmorphic-card hover:border-accent">
+                        <Eye className="mr-2 h-4 w-4" /> View Tech Stack
+                    </Button>
+                </DialogTrigger>
+                <DialogContent className="max-w-4xl w-full bg-background/80 backdrop-blur-lg glassmorphic-card">
+                    <DialogHeader>
+                        <DialogTitle className="text-2xl text-primary">Tech Stack</DialogTitle>
+                    </DialogHeader>
+                    <div className="relative">
+                        <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
+                        <Input 
+                            placeholder="Filter technologies..."
+                            value={searchTerm}
+                            onChange={(e) => setSearchTerm(e.target.value)}
+                            className="pl-10"
+                        />
+                    </div>
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-6 pt-4 max-h-[60vh] overflow-y-auto">
+                        {Object.entries(filteredTechStack).map(([category, items]) => (
+                            items.length > 0 && (
+                                <div key={category} className="space-y-3">
+                                    <h3 className="font-semibold text-lg text-primary">{category}</h3>
+                                    <ul className="space-y-2 text-sm text-muted-foreground">
+                                        {items.map(item => (
+                                            <li key={item} className="flex items-center gap-2">
+                                                <Check className="h-4 w-4 text-accent" />
+                                                <span>{item}</span>
+                                            </li>
+                                        ))}
+                                    </ul>
+                                </div>
+                            )
+                        ))}
+                    </div>
+                </DialogContent>
+             </Dialog>
+          </div>
           <p className="max-w-[800px] mx-auto text-muted-foreground md:text-xl/relaxed">
             A toolbox of languages, methodologies, and tools I use to build robust digital systems. Filter by domain to see my specialized expertise.
           </p>
         </div>
 
-        <div className="flex flex-wrap justify-center gap-2 mb-12">
+        <div className="flex flex-wrap justify-center gap-2 mb-8">
           {filters.map((filter) => (
             <Button
               key={filter}
@@ -361,6 +448,34 @@ export default function Skills() {
             </Button>
           ))}
         </div>
+
+        {isRtlActive && (
+            <div className="flex flex-wrap justify-center gap-2 mb-12">
+                {rtlFilters.map((filter) => (
+                    <Button key={filter} variant={activeRtlFilter === filter ? "secondary" : "ghost"} size="sm" onClick={() => setActiveRtlFilter(filter)}>
+                        {filter}
+                    </Button>
+                ))}
+            </div>
+        )}
+        {isPdActive && (
+            <div className="flex flex-wrap justify-center gap-2 mb-12">
+                {pdFilters.map((filter) => (
+                    <Button key={filter} variant={activePdFilter === filter ? "secondary" : "ghost"} size="sm" onClick={() => setActivePdFilter(filter)}>
+                        {filter}
+                    </Button>
+                ))}
+            </div>
+        )}
+        {isDvActive && (
+             <div className="flex flex-wrap justify-center gap-2 mb-12">
+                {dvFilters.map((filter) => (
+                    <Button key={filter} variant={activeDvFilter === filter ? "secondary" : "ghost"} size="sm" onClick={() => setActiveDvFilter(filter)}>
+                        {filter}
+                    </Button>
+                ))}
+            </div>
+        )}
 
         <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
           <AnimatePresence>
