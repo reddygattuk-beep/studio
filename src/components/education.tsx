@@ -15,16 +15,16 @@ const educationHistory = [
     logo: "https://9du0c01mm4og13n7.public.blob.vercel-storage.com/iit%20logo.webp",
     dataAiHint: "university logo",
     courses: [
-      { id: "ECE 425", name: "Physical and Logical Design of Computers" },
+      { id: "ECE 425", name: "Analysis and Design of Integrated Circuits" },
       { id: "ECE 429", name: "Introduction to VLSI Design" },
-      { id: "ECE 742", name: "High-Performance Computer Architecture" },
-      { id: "ECE 525", name: "Low Power VLSI" },
-      { id: "ECE 530", name: "Advanced VLSI Design" },
-      { id: "ECE 587", name: "ASIC/FPGA Design" },
-      { id: "ECE 529", name: "Digital Signal Processor Architecture" },
-      { id: "ECE 588", name: "Digital System Design with FPGAs" },
-      { id: "ECE 590", name: "Advanced Digital Systems" },
-      { id: "ECE 579", name: "VLSI System Testing" },
+      { id: "ECE 742", name: "Digital Systems-on-Chip Design" },
+      { id: "ECE 525", name: "RF Integrated Circuit Design" },
+      { id: "ECE 530", name: "High Performance VLSI/IC Systems" },
+      { id: "ECE 587", name: "Hardware/Software Co-Design" },
+      { id: "ECE 529", name: "Advanced VLSI Systems Design" },
+      { id: "ECE 588", name: "Hardware Acceleration for Machine Learning" },
+      { id: "ECE 590", name: "Object-Oriented Programming and Machine Learning" },
+      { id: "ECE 579", name: "Operation and Planning of Distributed Power Grid" },
     ],
   },
   {
@@ -83,7 +83,7 @@ export default function Education() {
                 <Accordion type="single" collapsible className="w-full">
                   <AccordionItem value="item-1">
                     <AccordionTrigger>
-                      <Button variant="link" className="p-0 text-muted-foreground">View Coursework</Button>
+                      <Button variant="link" className="p-0 text-muted-foreground font-semibold bg-clip-text text-transparent bg-gradient-to-r from-primary via-violet-400 to-accent">View Coursework</Button>
                     </AccordionTrigger>
                     <AccordionContent>
                       <TooltipProvider>
