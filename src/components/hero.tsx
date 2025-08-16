@@ -37,6 +37,24 @@ export default function Hero() {
 
       <div className="container relative z-20 px-4 md:px-6 motion-safe:animate-in motion-safe:fade-in motion-safe:slide-in-from-bottom-12 max-w-7xl">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-12 lg:gap-16 items-center">
+          {/* Left Column (becomes bottom on mobile): Image */}
+          <div className="flex justify-center lg:justify-end order-2 lg:order-1">
+            <div className="relative group">
+              <div className="absolute -inset-1 bg-gradient-to-br from-primary via-accent to-violet-600 rounded-2xl blur-lg opacity-60 group-hover:opacity-80 transition duration-500 animate-float"></div>
+              <div className="relative w-72 h-96 md:w-80 md:h-[420px] rounded-2xl overflow-hidden glassmorphic-card p-2 animate-float-delay">
+                <Image 
+                  src="https://placehold.co/400x550.png"
+                  alt="A picture of a CPU"
+                  width={400}
+                  height={550}
+                  className="object-cover w-full h-full rounded-[16px]"
+                  priority
+                  data-ai-hint="cpu processor"
+                />
+                 <div className="absolute inset-0 bg-gradient-to-t from-background/70 via-transparent to-transparent"></div>
+              </div>
+            </div>
+          </div>
           {/* Right Column (becomes top on mobile): Text Content */}
           <div className="text-center lg:text-left space-y-6 order-1 lg:order-2">
             <div className="space-y-4">
@@ -66,24 +84,6 @@ export default function Hero() {
               <Link href="https://www.linkedin.com/in/kesh7044/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" className="text-muted-foreground hover:text-primary transition-colors"><Linkedin className="w-6 h-6" /></Link>
               <Link href="https://github.com/kesh7044" target="_blank" rel="noopener noreferrer" aria-label="GitHub" className="text-muted-foreground hover:text-primary transition-colors"><Github className="w-6 h-6" /></Link>
               <Link href="mailto:kreddygattu@gmail.com" aria-label="Email" className="text-muted-foreground hover:text-primary transition-colors"><Mail className="w-6 h-6" /></Link>
-            </div>
-          </div>
-          {/* Left Column (becomes bottom on mobile): Image */}
-          <div className="flex justify-center lg:justify-end order-2 lg:order-1">
-            <div className="relative group">
-              <div className="absolute -inset-1 bg-gradient-to-br from-primary via-accent to-violet-600 rounded-2xl blur-lg opacity-60 group-hover:opacity-80 transition duration-500 animate-float"></div>
-              <div className="relative w-72 h-96 md:w-80 md:h-[420px] rounded-2xl overflow-hidden glassmorphic-card p-2 animate-float-delay">
-                <Image 
-                  src="https://9du0c01mm4og13n7.public.blob.vercel-storage.com/WhatsApp%20Image%202025-08-16%20at%2013.41.42_ed2b7a57.jpg"
-                  alt="A portrait of Keshava Reddygattu"
-                  width={400}
-                  height={550}
-                  className="object-cover w-full h-full rounded-[16px]"
-                  priority
-                  data-ai-hint="portrait man"
-                />
-                 <div className="absolute inset-0 bg-gradient-to-t from-background/70 via-transparent to-transparent"></div>
-              </div>
             </div>
           </div>
         </div>
