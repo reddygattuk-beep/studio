@@ -77,7 +77,7 @@ const projects = [
       "Measured critical-path delays to validate theoretical performance.",
     ],
     modalDetails: "A micro-gallery of the layout and post-layout simulation results are available, showing the physical implementation and its performance characteristics.",
-    image: "https://placehold.co/600x400.png",
+    image: "https://9du0c01mm4og13n7.public.blob.vercel-storage.com/Carry.png",
     dataAiHint: "chip layout"
   },
   {
