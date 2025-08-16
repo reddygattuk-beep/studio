@@ -45,7 +45,7 @@ export default function Header() {
       scrolled ? "bg-background/80 backdrop-blur-lg shadow-lg" : "bg-transparent"
     )}>
       <div className="container mx-auto flex h-20 items-center justify-between px-4 md:px-6">
-        <Link href="#hero" className="flex items-center gap-2 font-bold text-xl group">
+        <Link href="#" className="flex items-center gap-2 font-bold text-xl group">
           <span className="bg-clip-text text-transparent bg-gradient-to-r from-primary to-accent">
             Keshava Reddygattu
           </span>
@@ -74,7 +74,7 @@ export default function Header() {
             <SheetContent side="right" className="w-[280px] bg-background">
               <div className="flex flex-col p-6">
                 <div className="mb-8 flex justify-between items-center">
-                   <Link href="#hero" className="flex items-center gap-2 font-bold text-lg group">
+                   <Link href="#" className="flex items-center gap-2 font-bold text-lg group">
                      <span>Keshava Reddygattu</span>
                    </Link>
                   <SheetClose asChild>
