@@ -2,7 +2,6 @@
 "use client"
 
 import React, { useState, useEffect, useRef } from 'react';
-import { useTheme } from 'next-themes';
 
 const CursorGlow = () => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
@@ -84,9 +83,14 @@ const CursorGlow = () => {
         p.y += p.dy;
       });
 
+      const computedStyle = getComputedStyle(document.documentElement);
+      const primaryColor = `hsl(${computedStyle.getPropertyValue('--primary').trim()})`;
+      const accentColor = `hsl(${computedStyle.getPropertyValue('--accent').trim()})`;
+
       const gradient = ctx.createLinearGradient(0, 0, width, height);
-      gradient.addColorStop(0, `hsl(var(--primary))`);
-      gradient.addColorStop(1, `hsl(var(--accent))`);
+      gradient.addColorStop(0, primaryColor);
+      gradient.addColorStop(1, accentColor);
+      
       ctx.strokeStyle = gradient;
       
       ctx.lineCap = 'round';
