@@ -5,18 +5,37 @@ import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Textarea } from "@/components/ui/textarea"
 import { Section } from "./section"
-import { Send } from "lucide-react"
+import { Send, Linkedin, Github, Mail, Download } from "lucide-react"
+import Link from "next/link"
 
 export default function Contact() {
   return (
     <Section id="contact" className="bg-card/30 rounded-t-3xl">
       <div className="mx-auto max-w-2xl text-center space-y-4 mb-12">
-        <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">Get in Touch</h2>
+        <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">Let’s build efficient silicon.</h2>
         <p className="text-muted-foreground md:text-xl/relaxed">
-          Have a project in mind, a question, or just want to connect? Feel free to reach out.
+          Open to RTL, DV, PD, and low-power roles.
         </p>
       </div>
       <div className="mx-auto max-w-xl">
+        <div className="flex flex-wrap justify-center gap-4 mb-8">
+            <Button asChild size="lg">
+                <Link href="mailto:kreddygattu@gmail.com">
+                    <Mail className="mr-2" /> Email
+                </Link>
+            </Button>
+            <Button asChild size="lg" variant="outline" className="glassmorphic-card">
+                <Link href="https://www.linkedin.com/in/kesh7044/" target="_blank">
+                    <Linkedin className="mr-2" /> LinkedIn
+                </Link>
+            </Button>
+             <Button asChild size="lg" variant="outline" className="glassmorphic-card">
+                <Link href="/resume.pdf" target="_blank" download>
+                  <Download className="mr-2" /> Resume
+                </Link>
+              </Button>
+        </div>
+
         <form className="space-y-6" onSubmit={(e) => e.preventDefault()}>
           <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
             <div className="space-y-2">
@@ -37,6 +56,9 @@ export default function Contact() {
             <Send className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />
           </Button>
         </form>
+         <p className="text-xs text-center text-muted-foreground mt-6">
+            Your privacy is important. Your information will only be used to respond to your inquiry.
+        </p>
       </div>
     </Section>
   )
