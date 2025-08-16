@@ -55,7 +55,7 @@ const projects = [
       "Validated that the AND gate's delay accurately reflects the composed delays of NAND and INV stages.",
     ],
     modalDetails: "Features an illustration of the design hierarchy and the formal verification setup. This foundational project underscores a meticulous approach to physical design and verification.",
-    image: "https://placehold.co/600x400.png",
+    image: "https://9du0c01mm4og13n7.public.blob.vercel-storage.com/Porject.png",
     dataAiHint: "logic gate diagram"
   },
   {
