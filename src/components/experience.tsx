@@ -12,7 +12,7 @@ const experienceHistory = [
   {
     role: "Semiconductor Device Fabrication Engineer Intern",
     company: "UIUC",
-    location: "On-site",
+    location: "On-site, IL, USA",
     period: "May 2025 – Jul 2025",
     description: "Engaged in photolithography, deposition, and etching processes. Performed detailed device characterization and ensured verification of specifications.",
   },
