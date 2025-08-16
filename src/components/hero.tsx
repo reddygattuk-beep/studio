@@ -4,10 +4,12 @@ import Link from "next/link"
 import Image from "next/image"
 import { Button } from "@/components/ui/button"
 import { Github, Linkedin, Mail, MoveRight, ArrowDownToLine } from "lucide-react"
+import CursorGlow from "./cursor-glow"
 
 export default function Hero() {
   return (
     <section id="hero" className="relative w-full min-h-screen flex items-center justify-center overflow-hidden">
+      <CursorGlow />
       {/* Animated Gradient Mesh Background */}
       <div className="absolute inset-0 z-0 opacity-20">
         <div className="gradient-bg">
