@@ -3,42 +3,10 @@ import Image from "next/image";
 export default function Hero() {
   return (
     <section className="relative flex min-h-svh w-full items-center justify-center bg-background px-6">
-      <div className="mx-auto grid w-full max-w-[1200px] grid-cols-1 items-center gap-10 lg:grid-cols-2 lg:gap-10">
+      <div className="mx-auto grid w-full max-w-7xl grid-cols-1 items-center gap-12 lg:grid-cols-2 lg:gap-16">
         
-        {/* Mobile: Text First */}
-        <div className="flex flex-col items-center justify-center text-center lg:hidden space-y-4">
-            <div className="relative mx-auto flex h-full w-full max-w-xs items-center justify-center py-6 lg:max-w-none lg:py-0">
-              <div className="relative aspect-[3/4] w-full overflow-hidden rounded-2xl shadow-lg shadow-primary/10 transition-all duration-300 hover:shadow-primary/20 hover:scale-105">
-                <Image
-                  src="https://9du0c01mm4og13n7.public.blob.vercel-storage.com/WhatsApp%20Image%202025-08-16%20at%2013.41.42_ed2b7a57.jpg"
-                  alt="Keshava Reddygattu"
-                  layout="fill"
-                  objectFit="cover"
-                  objectPosition="center"
-                  className="z-0"
-                  priority
-                />
-                <div className="absolute inset-0 z-10 bg-gradient-to-t from-black/20 via-transparent to-black/10" />
-              </div>
-            </div>
-            <div className="space-y-2">
-                <h1 className="font-extrabold leading-tight tracking-tighter">
-                    <span className="block" style={{ fontSize: 'clamp(18px, 2.2vw, 28px)' }}>👋 Hey</span>
-                    <span className="block text-4xl sm:text-5xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-primary to-accent" style={{ filter: 'drop-shadow(0 0 8px hsl(var(--primary) / 0.5))' }}>
-                        I am Keshava
-                    </span>
-                    <span className="block font-medium text-primary" style={{ fontSize: 'clamp(16px, 1.8vw, 22px)' }}>
-                        VLSI Engineer
-                    </span>
-                </h1>
-                <p className="max-w-md font-bold text-muted-foreground" style={{ fontSize: 'clamp(16px, 1.8vw, 22px)' }}>
-                    I design chips that think fast and sip power. From architecture through verification and layout, I turn complexity into elegant hardware.
-                </p>
-            </div>
-        </div>
-
         {/* Desktop: Photo First */}
-        <div className="relative mx-auto hidden h-full w-full max-w-sm items-center justify-center py-6 lg:flex lg:max-w-none lg:py-0">
+        <div className="relative mx-auto hidden h-full w-full max-w-md items-center justify-center py-6 lg:flex lg:max-w-none lg:py-0">
           <div className="relative aspect-[3/4] w-full overflow-hidden rounded-2xl shadow-lg shadow-primary/10 transition-all duration-300 hover:shadow-primary/20 hover:scale-105">
             <Image
               src="https://9du0c01mm4og13n7.public.blob.vercel-storage.com/WhatsApp%20Image%202025-08-16%20at%2013.41.42_ed2b7a57.jpg"
@@ -53,22 +21,39 @@ export default function Hero() {
           </div>
         </div>
 
-        {/* Desktop: Text Second */}
-        <div className="hidden flex-col items-start justify-center text-left lg:flex space-y-4">
-             <h1 className="font-extrabold leading-tight tracking-tighter">
-                <span className="block" style={{ fontSize: 'clamp(18px, 2.2vw, 28px)' }}>👋 Hey</span>
-                <span className="block text-5xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-primary to-accent" style={{ filter: 'drop-shadow(0 0 8px hsl(var(--primary) / 0.5))' }}>
-                    I am Keshava
-                </span>
-                <span className="block font-medium text-primary" style={{ fontSize: 'clamp(16px, 1.8vw, 22px)' }}>
-                    VLSI Engineer
-                </span>
-            </h1>
-            <p className="max-w-md font-bold text-muted-foreground" style={{ fontSize: 'clamp(16px, 1.8vw, 22px)' }}>
-                I design chips that think fast and sip power. From architecture through verification and layout, I turn complexity into elegant hardware.
-            </p>
+        {/* Text Content */}
+        <div className="flex flex-col items-center justify-center text-center lg:items-start lg:text-left space-y-4">
+            {/* Mobile Photo */}
+            <div className="relative mx-auto flex h-full w-full max-w-xs items-center justify-center py-6 lg:hidden lg:max-w-none lg:py-0">
+              <div className="relative aspect-[3/4] w-full overflow-hidden rounded-2xl shadow-lg shadow-primary/10 transition-all duration-300 hover:shadow-primary/20 hover:scale-105">
+                <Image
+                  src="https://9du0c01mm4og13n7.public.blob.vercel-storage.com/WhatsApp%20Image%202025-08-16%20at%2013.41.42_ed2b7a57.jpg"
+                  alt="Keshava Reddygattu"
+                  layout="fill"
+                  objectFit="cover"
+                  objectPosition="center"
+                  className="z-0"
+                  priority
+                />
+                <div className="absolute inset-0 z-10 bg-gradient-to-t from-black/20 via-transparent to-black/10" />
+              </div>
+            </div>
+            
+            <div className="space-y-2">
+                <h1 className="font-extrabold leading-tight tracking-tighter">
+                    <span className="block" style={{ fontSize: 'clamp(18px, 2.2vw, 28px)' }}>👋 Hey</span>
+                    <span className="block text-4xl sm:text-5xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-primary to-accent" style={{ filter: 'drop-shadow(0 0 8px hsl(var(--primary) / 0.5))', fontSize: 'clamp(22px, 2.6vw, 34px)' }}>
+                        I am Keshava
+                    </span>
+                    <span className="block font-medium text-primary" style={{ fontSize: 'clamp(16px, 1.8vw, 22px)' }}>
+                        VLSI Engineer
+                    </span>
+                </h1>
+                <p className="max-w-md font-bold text-foreground" style={{ fontSize: 'clamp(16px, 1.8vw, 22px)' }}>
+                    I design chips that think fast and sip power. From architecture through verification and layout, I turn complexity into elegant hardware.
+                </p>
+            </div>
         </div>
-
       </div>
     </section>
   );
