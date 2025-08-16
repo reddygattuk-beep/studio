@@ -35,29 +35,10 @@ export default function Hero() {
       
       <div className="absolute inset-0 bg-background/80 z-10" />
 
-      <div className="container relative z-20 px-4 md:px-6 motion-safe:animate-in motion-safe:fade-in motion-safe:slide-in-from-bottom-12 duration-500">
-        <div className="grid md:grid-cols-2 gap-12 items-center">
-          {/* Left Column: Image */}
-          <div className="flex justify-center md:justify-end">
-            <div className="relative group">
-              <div className="absolute -inset-1 bg-gradient-to-br from-primary via-accent to-violet-600 rounded-2xl blur-lg opacity-60 group-hover:opacity-80 transition duration-500 animate-float"></div>
-              <div className="relative w-72 h-96 md:w-80 md:h-[420px] rounded-2xl overflow-hidden glassmorphic-card p-2 animate-float-delay">
-                <Image 
-                  src="https://9du0c01mm4og13n7.public.blob.vercel-storage.com/Keshava_Portfolio.jpg"
-                  alt="A portrait of Keshava Reddygattu"
-                  width={400}
-                  height={550}
-                  className="object-cover w-full h-full rounded-lg"
-                  priority
-                  data-ai-hint="portrait man"
-                />
-                 <div className="absolute inset-0 bg-gradient-to-t from-background/70 via-transparent to-transparent"></div>
-              </div>
-            </div>
-          </div>
-
-          {/* Right Column: Text Content */}
-          <div className="text-center md:text-left space-y-6">
+      <div className="container relative z-20 px-4 md:px-6 motion-safe:animate-in motion-safe:fade-in motion-safe:slide-in-from-bottom-12 duration-500 max-w-7xl">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-12 lg:gap-16 items-center">
+          {/* Right Column (becomes top on mobile): Text Content */}
+          <div className="text-center lg:text-left space-y-6 order-1 lg:order-2">
             <div className="space-y-4">
                <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold tracking-tight">
                 <span className="inline-block animate-wave origin-[70%_70%]">👋</span> Hey, I'm{" "}
@@ -65,11 +46,11 @@ export default function Hero() {
                   Keshava
                 </span>
               </h1>
-               <blockquote className="mt-4 max-w-lg text-center md:text-left text-muted-foreground italic text-sm md:text-base border-l-2 border-primary pl-4">
+               <blockquote className="mt-4 max-w-lg mx-auto lg:mx-0 text-muted-foreground italic text-sm md:text-base border-l-2 border-primary pl-4">
                 I build reliable systems on silicon with clear RTL and rigorous verification. Complex problems become timing-safe, tapeout-ready designs.
               </blockquote>
             </div>
-            <div className="flex flex-col sm:flex-row items-center justify-center md:justify-start gap-4">
+            <div className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4">
               <Button asChild size="lg" className="group bg-gradient-to-r from-primary to-accent text-primary-foreground border-none">
                 <Link href="#projects">
                   View Projects <MoveRight className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" />
@@ -81,10 +62,28 @@ export default function Hero() {
                 </Link>
               </Button>
             </div>
-            <div className="flex items-center justify-center md:justify-start gap-6 pt-4">
+            <div className="flex items-center justify-center lg:justify-start gap-6 pt-4">
               <Link href="https://www.linkedin.com/in/kesh7044/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" className="text-muted-foreground hover:text-primary transition-colors"><Linkedin className="w-6 h-6" /></Link>
               <Link href="https://github.com/kesh7044" target="_blank" rel="noopener noreferrer" aria-label="GitHub" className="text-muted-foreground hover:text-primary transition-colors"><Github className="w-6 h-6" /></Link>
               <Link href="mailto:kreddygattu@gmail.com" aria-label="Email" className="text-muted-foreground hover:text-primary transition-colors"><Mail className="w-6 h-6" /></Link>
+            </div>
+          </div>
+          {/* Left Column (becomes bottom on mobile): Image */}
+          <div className="flex justify-center lg:justify-end order-2 lg:order-1">
+            <div className="relative group">
+              <div className="absolute -inset-1 bg-gradient-to-br from-primary via-accent to-violet-600 rounded-2xl blur-lg opacity-60 group-hover:opacity-80 transition duration-500 animate-float"></div>
+              <div className="relative w-72 h-96 md:w-80 md:h-[420px] rounded-2xl overflow-hidden glassmorphic-card p-2 animate-float-delay">
+                <Image 
+                  src="https://9du0c01mm4og13n7.public.blob.vercel-storage.com/Keshava_Portfolio.jpg"
+                  alt="A portrait of Keshava Reddygattu"
+                  width={400}
+                  height={550}
+                  className="object-cover w-full h-full rounded-[16px]"
+                  priority
+                  data-ai-hint="portrait man"
+                />
+                 <div className="absolute inset-0 bg-gradient-to-t from-background/70 via-transparent to-transparent"></div>
+              </div>
             </div>
           </div>
         </div>
