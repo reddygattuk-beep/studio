@@ -1,4 +1,3 @@
-
 "use client"
 
 import Link from "next/link"
@@ -63,7 +62,6 @@ export default function Hero() {
                 <span className="inline-block animate-wave origin-[70%_70%]">👋</span> Hey, I'm <br />
                 <span className="relative inline-block bg-clip-text text-transparent bg-gradient-to-r from-primary to-accent">
                   Keshava
-                  <span className="absolute bottom-[-8px] left-0 h-1.5 w-full bg-gradient-to-r from-primary to-accent rounded-full"></span>
                 </span>
               </h1>
               <p className="text-accent text-xl sm:text-2xl font-medium">
