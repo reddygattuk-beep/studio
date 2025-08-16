@@ -16,27 +16,27 @@ const skillsData = {
   "HDL & RTL Design": {
     icon: Code,
     items: ["Verilog", "SystemVerilog", "VHDL", "RTL Microarchitecture", "Hierarchical Design", "Testbench Development"],
-    tags: ["RTL", "DV"],
+    tags: ["RTL", "Design Verification"],
   },
   "ASIC Design Flow": {
     icon: GitMerge,
     items: ["RTL Simulation", "Logic Synthesis", "Place & Route", "Formal Verification", "Static Timing Analysis", "PPA Trade-off Analysis"],
-    tags: ["PD", "DV"],
+    tags: ["Physical Design", "Design Verification"],
   },
   "EDA Tools": {
     icon: Terminal,
     items: ["Cadence Virtuoso", "Cadence Innovus", "Cadence Xcelium", "Synopsys DC", "Synopsys Formality", "Xilinx Vivado"],
-    tags: ["PD", "RTL", "DV"],
+    tags: ["Physical Design", "RTL", "Design Verification"],
   },
   "Low-Power Techniques": {
     icon: Zap,
     items: ["Clock Gating", "Power Gating", "MTCMOS", "Leakage Power Reduction", "Dynamic Power Optimization"],
-    tags: ["PD", "Low-Power"],
+    tags: ["Physical Design", "Low-Power"],
   },
   "Digital Design & Verification": {
     icon: Microscope,
     items: ["CMOS Schematic/Layout", "DRC/LVS/PEX", "Propagation Delay", "Waveform Analysis", "FPGA Prototyping"],
-    tags: ["DV", "FPGA"],
+    tags: ["Design Verification", "FPGA"],
   },
   "ML Hardware Acceleration": {
     icon: BrainCircuit,
@@ -46,16 +46,16 @@ const skillsData = {
   "Memory Design": {
     icon: MemoryStick,
     items: ["6T/8T SRAM Design", "Stability Analysis", "Leakage Reduction", "Security-Aware Design"],
-    tags: ["Memory", "PD"],
+    tags: ["Memory", "Physical Design"],
   },
   "Programming & Scripting": {
     icon: Code,
     items: ["Python", "TCL", "Bash", "EDA Automation"],
-    tags: ["DV", "PD"],
+    tags: ["Design Verification", "Physical Design"],
   },
 };
 
-const filters = ["All", "RTL", "PD", "DV", "Low-Power", "FPGA", "Memory"];
+const filters = ["All", "RTL", "Physical Design", "Design Verification", "Low-Power", "FPGA", "Memory"];
 
 export default function Skills() {
   const [activeFilter, setActiveFilter] = React.useState("All");
