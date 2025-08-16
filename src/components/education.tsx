@@ -67,11 +67,12 @@ export default function Education() {
                 alt={`${edu.institution} logo`}
                 width={60}
                 height={60}
-                className="rounded-full border p-1 object-contain grayscale transition-all duration-300 hover:grayscale-0"
+                className={`rounded-full border p-1 object-contain transition-all duration-300 ${edu.institution === "Illinois Institute of Technology" ? "grayscale-0" : "grayscale hover:grayscale-0"}`}
+                style={edu.institution === "Illinois Institute of Technology" ? { filter: 'sepia(100%) hue-rotate(-50deg) saturate(1000%)' } : {}}
                 data-ai-hint={edu.dataAiHint}
               />
               <div className="flex-1">
-                <CardTitle className="text-2xl">{edu.institution}</CardTitle>
+                <CardTitle className={`text-2xl ${edu.institution === "Illinois Institute of Technology" ? 'bg-clip-text text-transparent bg-gradient-to-r from-red-500 to-red-700' : ''}`}>{edu.institution}</CardTitle>
                 <CardDescription className="text-primary">{edu.degree}</CardDescription>
                 <p className="text-sm text-muted-foreground mt-1">{edu.period} {edu.grade && `• ${edu.grade}`}</p>
               </div>
