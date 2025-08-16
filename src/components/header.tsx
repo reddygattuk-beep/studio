@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react"
 import Link from "next/link"
-import { Cpu, Menu, X } from "lucide-react"
+import { Menu, X } from "lucide-react"
 import { cn } from "@/lib/utils"
 import { Button } from "@/components/ui/button"
 import { Sheet, SheetContent, SheetTrigger, SheetClose } from "@/components/ui/sheet"
@@ -46,11 +46,8 @@ export default function Header() {
     )}>
       <div className="container mx-auto flex h-20 items-center justify-between px-4 md:px-6">
         <Link href="#hero" className="flex items-center gap-2 font-bold text-xl group">
-          <div className="p-2 bg-primary/20 rounded-lg group-hover:bg-primary/30 transition-colors">
-            <Cpu className="h-6 w-6 text-primary" />
-          </div>
           <span className="bg-clip-text text-transparent bg-gradient-to-r from-primary to-accent">
-            CircuitFlow
+            Keshava Reddygattu
           </span>
         </Link>
         <nav className="hidden md:flex items-center gap-6">
@@ -78,10 +75,7 @@ export default function Header() {
               <div className="flex flex-col p-6">
                 <div className="mb-8 flex justify-between items-center">
                    <Link href="#hero" className="flex items-center gap-2 font-bold text-lg group">
-                     <div className="p-2 bg-primary/20 rounded-lg">
-                       <Cpu className="h-5 w-5 text-primary" />
-                     </div>
-                     <span>CircuitFlow</span>
+                     <span>Keshava Reddygattu</span>
                    </Link>
                   <SheetClose asChild>
                     <Button variant="ghost" size="icon">
