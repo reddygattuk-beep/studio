@@ -29,11 +29,6 @@ export default function Contact() {
                     <Linkedin className="mr-2" /> LinkedIn
                 </Link>
             </Button>
-             <Button asChild size="lg" variant="outline" className="glassmorphic-card">
-                <Link href="/resume.pdf" target="_blank" download>
-                  <Download className="mr-2" /> Resume
-                </Link>
-              </Button>
         </div>
 
         <form className="space-y-6" onSubmit={(e) => e.preventDefault()}>
