@@ -106,14 +106,37 @@
     animation: pd-grid-pan 60s linear infinite;
 }
 
+#rtl {
+    position: relative;
+    overflow: hidden;
+}
+#rtl::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+    --line-color-rtl: hsl(var(--accent) / 0.07);
+    background-image:
+        repeating-linear-gradient(60deg, transparent, transparent 19px, var(--line-color-rtl) 20px, var(--line-color-rtl) 21px, transparent 22px, transparent 40px),
+        repeating-linear-gradient(120deg, transparent, transparent 19px, var(--line-color-rtl) 20px, var(--line-color-rtl) 21px, transparent 22px, transparent 40px);
+    mask-image: radial-gradient(ellipse at 50% 50%, black 30%, transparent 70%);
+    animation: rtl-bg-pan 45s linear infinite;
+}
+
 
 @keyframes pd-grid-pan {
     from { background-position: 0 0, 0 0, 0 0, 0 0; }
     to { background-position: 75px 75px, 75px 75px, 15px 15px, 15px 15px; }
 }
 
+@keyframes rtl-bg-pan {
+    from { transform: rotate(0deg) scale(1.5); }
+    to { transform: rotate(360deg) scale(1.5); }
+}
+
 @media (prefers-reduced-motion: reduce) {
-    .pd-background::before {
+    .pd-background::before, #rtl::before {
       animation: none;
     }
 }
