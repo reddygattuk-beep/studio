@@ -1,3 +1,4 @@
+
 "use client"
 
 import Link from "next/link"
@@ -68,9 +69,7 @@ export default function Hero() {
                 VLSI Engineer
               </p>
                <blockquote className="mt-4 max-w-lg text-center md:text-left text-muted-foreground italic text-sm md:text-base border-l-2 border-primary pl-4">
-                Give me a problem and a bench; I craft the logic, teach it discipline, and tune its pace.
-                <br />
-                Flip the switch—it wakes quietly and runs like it means it.
+                I build reliable systems on silicon with clear RTL and rigorous verification. Complex problems become timing-safe, tapeout-ready designs.
               </blockquote>
             </div>
             <div className="flex flex-col sm:flex-row items-center justify-center md:justify-start gap-4">
@@ -156,5 +155,3 @@ export default function Hero() {
     </section>
   )
 }
-
-    
