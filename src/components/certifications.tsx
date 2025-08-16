@@ -17,7 +17,7 @@ const certifications = [
   },
   {
     title: "Digital IC Design Fundamentals",
-    issuer: "Online Course",
+    issuer: "Cadence",
     date: "Mar 2025",
     category: "VLSI",
     details: "Covered core concepts of digital integrated circuit design from logic gates to system level."
