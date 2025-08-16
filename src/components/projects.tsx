@@ -110,7 +110,7 @@ const projects = [
       "Maintained high classification accuracy with a reduced resource footprint through quantization.",
     ],
     modalDetails: "Includes charts detailing resource utilization (LUTs, FFs, BRAMs, DSPs) and throughput analysis. A deep dive into the hardware/software co-design for machine learning.",
-    image: "https://placehold.co/600x400.png",
+    image: "https://9du0c01mm4og13n7.public.blob.vercel-storage.com/FPGA.png",
     dataAiHint: "neural network"
   },
   {
