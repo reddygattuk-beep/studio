@@ -10,7 +10,7 @@ const educationHistory = [
     institution: "Illinois Institute of Technology",
     degree: "M.S. in Electrical & Computer Engineering (VLSI & Microelectronics)",
     period: "Aug 2023 – May 2025",
-    logo: "https://placehold.co/100x100.png",
+    logo: "https://9du0c01mm4og13n7.public.blob.vercel-storage.com/iit%20logo.webp",
     dataAiHint: "university logo",
     courses: [
       { id: "ECE 425", name: "Physical and Logical Design of Computers" },
