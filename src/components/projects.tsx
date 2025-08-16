@@ -44,7 +44,7 @@ const projects = [
       "Successfully achieved timing closure with positive slack and 100% logical equivalence.",
     ],
     modalDetails: "Includes screenshots from SimVision and the final layout, with a summary of the Power, Performance, and Area (PPA) results. This project demonstrates proficiency in the end-to-end ASIC design lifecycle.",
-    image: "https://placehold.co/600x400.png",
+    image: "https://9du0c01mm4og13n7.public.blob.vercel-storage.com/ASIC%20Flow.png",
     dataAiHint: "ASIC design flow"
   },
   {
