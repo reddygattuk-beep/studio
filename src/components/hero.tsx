@@ -81,9 +81,9 @@ export default function Hero() {
               </Button>
             </div>
             <div className="flex items-center justify-center md:justify-start gap-6 pt-4">
-              <Link href="#" className="text-muted-foreground hover:text-primary transition-colors"><Linkedin className="w-6 h-6" /></Link>
-              <Link href="#" className="text-muted-foreground hover:text-primary transition-colors"><Github className="w-6 h-6" /></Link>
-              <Link href="#contact" className="text-muted-foreground hover:text-primary transition-colors"><Mail className="w-6 h-6" /></Link>
+              <Link href="https://www.linkedin.com/in/kesh7044/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" className="text-muted-foreground hover:text-primary transition-colors"><Linkedin className="w-6 h-6" /></Link>
+              <Link href="https://github.com/kesh7044" target="_blank" rel="noopener noreferrer" aria-label="GitHub" className="text-muted-foreground hover:text-primary transition-colors"><Github className="w-6 h-6" /></Link>
+              <Link href="mailto:kreddygattu@gmail.com" aria-label="Email" className="text-muted-foreground hover:text-primary transition-colors"><Mail className="w-6 h-6" /></Link>
             </div>
           </div>
         </div>

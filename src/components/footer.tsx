@@ -20,9 +20,9 @@ export default function Footer() {
           © {new Date().getFullYear()} Keshava Reddygattu
         </p>
         <div className="flex items-center gap-6">
-          <Link href="https://www.linkedin.com/in/kesh7044/" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-primary transition-colors"><Linkedin className="w-5 h-5" /></Link>
-          <Link href="https://github.com/kesh7044" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-primary transition-colors"><Github className="w-5 h-5" /></Link>
-          <Link href="mailto:kreddygattu@gmail.com" className="text-muted-foreground hover:text-primary transition-colors"><Mail className="w-5 h-5" /></Link>
+          <Link href="https://www.linkedin.com/in/kesh7044/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn Profile" className="text-muted-foreground hover:text-primary transition-colors"><Linkedin className="w-5 h-5" /></Link>
+          <Link href="https://github.com/kesh7044" target="_blank" rel="noopener noreferrer" aria-label="GitHub Profile" className="text-muted-foreground hover:text-primary transition-colors"><Github className="w-5 h-5" /></Link>
+          <Link href="mailto:kreddygattu@gmail.com" aria-label="Email Keshava" className="text-muted-foreground hover:text-primary transition-colors"><Mail className="w-5 h-5" /></Link>
         </div>
         <div className="hidden sm:block">
             <Button

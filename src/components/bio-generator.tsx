@@ -53,10 +53,10 @@ export default function BioGenerator() {
       <div className="grid gap-12 md:grid-cols-2 md:gap-16">
         <div className="space-y-4">
           <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl bg-clip-text text-transparent bg-gradient-to-r from-primary via-violet-400 to-accent">
-            AI Bio Generator
+            AI-Powered Bio Generator
           </h2>
           <p className="max-w-[700px] text-muted-foreground md:text-xl/relaxed">
-            Need a professional introduction? Provide a summary of your skills and projects, and let our AI craft a compelling bio for you. A great starting point for your LinkedIn or resume summary.
+            Need a professional introduction? Provide a summary of your skills and projects, and let our AI craft a compelling bio. It's a great starting point for your LinkedIn or resume summary.
           </p>
         </div>
         <Card className="glassmorphic-card">
