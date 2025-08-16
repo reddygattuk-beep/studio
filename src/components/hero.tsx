@@ -49,7 +49,7 @@ export default function Hero() {
                         VLSI Engineer
                     </span>
                 </h1>
-                <p className="max-w-md font-bold text-foreground" style={{ fontSize: '40px' }}>
+                <p className="max-w-md font-bold text-muted-foreground" style={{ fontSize: '20px' }}>
                     I design chips that think fast and sip power. From architecture through verification and layout, I turn complexity into elegant hardware.
                 </p>
             </div>
