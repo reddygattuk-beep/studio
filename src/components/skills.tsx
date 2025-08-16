@@ -312,18 +312,41 @@ const techStackData = {
 export default function Skills() {
   const [activeFilter, setActiveFilter] = React.useState("All");
   const [searchTerm, setSearchTerm] = React.useState("");
+  
+  const dvFilters = ["All", "Core", "Tools", "Protocols", "Deliverables", "Mindset"];
+  const [activeDvFilter, setActiveDvFilter] = React.useState("All");
+
+  const pdFilters = ["All", "Flow", "Timing/Noise", "Power", "Signoff", "Automation"];
+  const [activePdFilter, setActivePdFilter] = React.useState("All");
+
+  const rtlFilters = ["All", "Fundamentals", "Microarchitecture", "Low-Power", "Quality", "Interfaces", "Automation", "Deliverables"];
+  const [activeRtlFilter, setActiveRtlFilter] = React.useState("All");
+
 
   const filteredSkills = React.useMemo(() => {
-    if (activeFilter === "All") {
-      return Object.entries(skillsData);
-    }
+    if (activeFilter !== "All" && activeFilter !== "Low-Power" && activeFilter !== "FPGA" && activeFilter !== "Memory") return [];
+    
+    if (activeFilter === "All") return Object.entries(skillsData);
+
     return Object.entries(skillsData).filter(([, skill]) =>
       skill.tags.includes(activeFilter)
     );
   }, [activeFilter]);
+
+  const filteredRtlSkills = React.useMemo(() => {
+    const isRtlVisible = activeFilter === "All" || activeFilter === "RTL";
+    if (!isRtlVisible) return [];
+    if (activeRtlFilter === "All") return rtlSkillsData;
+    return rtlSkillsData.filter(skill => skill.category === activeRtlFilter);
+  }, [activeFilter, activeRtlFilter]);
+
+  const filteredPdSkills = React.useMemo(() => {
+    const isPdVisible = activeFilter === "All" || activeFilter === "Physical Design";
+    if (!isPdVisible) return [];
+    if (activePdFilter === "All") return pdSkillsData;
+    return pdSkillsData.filter(skill => skill.category === activePdFilter);
+  }, [activeFilter, activePdFilter]);
   
-  const dvFilters = ["All", "Core", "Tools", "Protocols", "Deliverables", "Mindset"];
-  const [activeDvFilter, setActiveDvFilter] = React.useState("All");
   const filteredDvSkills = React.useMemo(() => {
       const isDvVisible = activeFilter === "All" || activeFilter === "Design Verification";
       if (!isDvVisible) return [];
@@ -331,23 +354,12 @@ export default function Skills() {
       return dvSkillsData.filter(skill => skill.category === activeDvFilter);
   }, [activeFilter, activeDvFilter]);
 
-  const pdFilters = ["All", "Flow", "Timing/Noise", "Power", "Signoff", "Automation"];
-  const [activePdFilter, setActivePdFilter] = React.useState("All");
-  const filteredPdSkills = React.useMemo(() => {
-    const isPdVisible = activeFilter === "All" || activeFilter === "Physical Design";
-    if (!isPdVisible) return [];
-    if (activePdFilter === "All") return pdSkillsData;
-    return pdSkillsData.filter(skill => skill.category === activePdFilter);
-  }, [activeFilter, activePdFilter]);
+  React.useEffect(() => {
+    if(activeFilter === "RTL") setActiveRtlFilter("All");
+    if(activeFilter === "Physical Design") setActivePdFilter("All");
+    if(activeFilter === "Design Verification") setActiveDvFilter("All");
+  }, [activeFilter]);
 
-  const rtlFilters = ["All", "Fundamentals", "Microarchitecture", "Low-Power", "Quality", "Interfaces", "Automation", "Deliverables"];
-  const [activeRtlFilter, setActiveRtlFilter] = React.useState("All");
-  const filteredRtlSkills = React.useMemo(() => {
-    const isRtlVisible = activeFilter === "All" || activeFilter === "RTL";
-    if (!isRtlVisible) return [];
-    if (activeRtlFilter === "All") return rtlSkillsData;
-    return rtlSkillsData.filter(skill => skill.category === activeRtlFilter);
-  }, [activeFilter, activeRtlFilter]);
 
   const filteredTechStack = React.useMemo(() => {
     if (!searchTerm) {
@@ -479,7 +491,7 @@ export default function Skills() {
 
         <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
           <AnimatePresence>
-            {(activeFilter !== "Design Verification" && activeFilter !== "Physical Design" && activeFilter !== "RTL") && filteredSkills.map(([category, details], index) => (
+            {filteredSkills.map(([category, details], index) => (
               <motion.div
                 key={category}
                 variants={cardVariants}
