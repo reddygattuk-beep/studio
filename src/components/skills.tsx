@@ -3,14 +3,11 @@
 import * as React from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Section } from "./section"
-import { Code, Cpu, Layers, GitMerge, FileCheck2, Search, Zap, Microscope, BrainCircuit, MemoryStick, Terminal } from "lucide-react"
+import { Code, GitMerge, FileCheck2, Zap, Microscope, BrainCircuit, MemoryStick, Terminal, ShieldCheck, FileText, Brain, Network } from "lucide-react"
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { AnimatePresence, motion } from 'framer-motion';
-
-const VhdlSvg = () => <svg viewBox="0 0 100 100" className="h-6 w-6 text-accent"><text x="50%" y="55%" dominantBaseline="middle" textAnchor="middle" fontSize="30" fontWeight="bold" fill="currentColor">VHDL</text></svg>
-const VerilogSvg = () => <svg viewBox="0 0 100 100" className="h-6 w-6 text-accent"><text x="50%" y="55%" dominantBaseline="middle" textAnchor="middle" fontSize="24" fontWeight="bold" fill="currentColor">SV</text></svg>
-const TclSvg = () => <svg viewBox="0 0 100 100" className="h-6 w-6 text-accent"><text x="50%" y="55%" dominantBaseline="middle" textAnchor="middle" fontSize="35" fontWeight="bold" fill="currentColor">Tcl</text></svg>
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
 
 const skillsData = {
   "HDL & RTL Design": {
@@ -55,6 +52,75 @@ const skillsData = {
   },
 };
 
+const dvSkillsData = [
+    {
+      title: "Core DV Skills",
+      category: "Design Verification",
+      icon: Code,
+      content: [
+        { item: "SystemVerilog", tooltip: "Used for RTL design, testbenches, and assertions (SVA)." },
+        { item: "UVM", tooltip: "Universal Verification Methodology for robust, reusable testbenches." },
+        { item: "Constrained-Random", tooltip: "Efficiently explores the state space by generating legal random stimulus." },
+        { item: "Coverage-Driven", tooltip: "Uses functional coverage metrics to guide verification efforts and measure completeness." },
+        { item: "Assertion-Based Verification", tooltip: "Using properties (like SVA) to check for specific hardware behaviors." },
+        { item: "Reference Models & Scoreboards", tooltip: "Predicting and checking the DUT's output against a golden model." },
+        { item: "C/C++ & DPI-C", tooltip: "Integrating high-level models or functions with SystemVerilog." },
+        { item: "Python/TCL for Automation", tooltip: "Scripting for regressions, reports, and tool flows." },
+      ]
+    },
+    {
+      title: "Tools & Flows",
+      category: "Design Verification",
+      icon: Terminal,
+      content: [
+        { item: "Simulators", tooltip: "Cadence Xcelium, Synopsys VCS, Siemens Questa" },
+        { item: "Debug & Waveform", tooltip: "Verdi, SimVision, DVE for deep signal analysis." },
+        { item: "Formal Verification", tooltip: "JasperGold, VC Formal for exhaustive property checking." },
+        { item: "Lint & CDC/RDC", tooltip: "SpyGlass, Ascent for static code quality and clock/reset domain crossing checks." },
+        { item: "Coverage & Regressions", tooltip: "vManager, IMC, urg for managing large-scale verification." },
+        { item: "Hardware Acceleration", tooltip: "Palladium, ZeBu (Emulation) & FPGA Prototyping for speed." },
+        { item: "Infrastructure", tooltip: "Git, CI/CD (Jenkins), Make/CMake, Docker for robust dev environments." },
+      ]
+    },
+    {
+      title: "Design / Protocol Know-How",
+      category: "Design Verification",
+      icon: Network,
+      content: [
+        { item: "AMBA", tooltip: "AXI, AHB, APB - standard on-chip interconnects." },
+        { item: "Serial Protocols", tooltip: "I2C, SPI, UART for peripheral communication." },
+        { item: "SoC Architecture", tooltip: "Caches, coherence (ACE/CHI), MMU, interrupts." },
+        { item: "Low-Power Verification", tooltip: "UPF/CPF for power-intent simulation and sequence checking." },
+        { item: "Clock & Reset Verification", tooltip: "CDC patterns, reset sequencing, metastability analysis." },
+        { item: "Advanced Busses", tooltip: "Basic knowledge of PCIe, DDR, USB, Ethernet." },
+      ]
+    },
+     {
+      title: "Verification Deliverables",
+      category: "Design Verification",
+      icon: FileText,
+      content: [
+        { item: "Verification Plans", tooltip: "Comprehensive documents linking features to verification strategy." },
+        { item: "Reusable UVM Environments", tooltip: "Modular agents, RAL models, and scoreboards for portability." },
+        { item: "Coverage Closure Reports", tooltip: "Detailed analysis of code, functional, and assertion coverage." },
+        { item: "Bug Reports & Triage", tooltip: "Clear, minimal, reproducible test cases for efficient debug." },
+        { item: "Sign-off Checklists", tooltip: "Ensuring all quality metrics are met before tape-out." },
+      ]
+    },
+    {
+      title: "Mindset & Collaboration",
+      category: "Design Verification",
+      icon: Brain,
+      content: [
+        { item: "Adversarial Thinking", tooltip: "A proactive 'break-it' attitude to find corner-case bugs." },
+        { item: "Hypothesis-Driven Debug", tooltip: "Systematic approach to isolating and proving root causes." },
+        { item: "Clear Communication", tooltip: "Effective collaboration with designers and architects." },
+        { item: "Data-Driven Decisions", tooltip: "Using coverage and bug-rate metrics to guide effort." },
+        { item: "Automation & Efficiency", tooltip: "Always looking for ways to script and accelerate tasks." },
+      ]
+    }
+  ];
+
 const filters = ["All", "RTL", "Physical Design", "Design Verification", "Low-Power", "FPGA", "Memory"];
 
 export default function Skills() {
@@ -69,6 +135,13 @@ export default function Skills() {
     );
   }, [activeFilter]);
   
+  const filteredDvSkills = React.useMemo(() => {
+    if (activeFilter === "All" || activeFilter === "Design Verification") {
+        return dvSkillsData;
+    }
+    return [];
+  }, [activeFilter]);
+
   const cardVariants = {
     hidden: { opacity: 0, y: 20 },
     visible: (i: number) => ({
@@ -107,7 +180,7 @@ export default function Skills() {
 
         <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
           <AnimatePresence>
-            {filteredSkills.map(([category, details], index) => (
+            {activeFilter !== "Design Verification" && filteredSkills.map(([category, details], index) => (
               <motion.div
                 key={category}
                 variants={cardVariants}
@@ -135,6 +208,45 @@ export default function Skills() {
                   </CardContent>
                 </Card>
               </motion.div>
+            ))}
+             {filteredDvSkills.map((skill, index) => (
+                <motion.div
+                key={skill.title}
+                variants={cardVariants}
+                initial="hidden"
+                animate="visible"
+                exit="hidden"
+                custom={index}
+                layout
+                >
+                <Card className="glassmorphic-card h-full transition-all duration-300 hover:shadow-primary/20 hover:-translate-y-1">
+                    <CardHeader>
+                    <CardTitle className="flex items-center gap-3 text-xl">
+                        <skill.icon className="w-7 h-7 text-primary" />
+                        {skill.title}
+                    </CardTitle>
+                    </CardHeader>
+                    <CardContent>
+                    <ul className="space-y-2 text-sm text-muted-foreground">
+                        <TooltipProvider>
+                        {skill.content.map(item => (
+                            <li key={item.item} className="flex items-start gap-2">
+                            <ShieldCheck className="w-4 h-4 mt-0.5 text-accent flex-shrink-0" />
+                            <Tooltip>
+                                <TooltipTrigger asChild>
+                                <span className="cursor-default border-b border-dashed border-muted-foreground/30">{item.item}</span>
+                                </TooltipTrigger>
+                                <TooltipContent>
+                                <p className="max-w-xs">{item.tooltip}</p>
+                                </TooltipContent>
+                            </Tooltip>
+                            </li>
+                        ))}
+                        </TooltipProvider>
+                    </ul>
+                    </CardContent>
+                </Card>
+                </motion.div>
             ))}
           </AnimatePresence>
         </div>
