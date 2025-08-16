@@ -43,12 +43,11 @@ export default function Hero() {
               <div className="absolute -inset-1 bg-gradient-to-br from-primary via-accent to-violet-600 rounded-2xl blur-lg opacity-60 group-hover:opacity-80 transition duration-500 animate-float"></div>
               <div className="relative w-72 h-96 md:w-80 md:h-[420px] rounded-2xl overflow-hidden glassmorphic-card p-2 animate-float-delay">
                 <Image 
-                  src="https://placehold.co/400x550.png"
+                  src="/keshava-portrait.jpg"
                   alt="A portrait of Keshava Reddygattu"
                   width={400}
                   height={550}
                   className="object-cover w-full h-full rounded-lg"
-                  data-ai-hint="portrait man"
                   priority
                 />
                  <div className="absolute inset-0 bg-gradient-to-t from-background/70 via-transparent to-transparent"></div>
