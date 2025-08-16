@@ -10,7 +10,7 @@ import BioGenerator from '@/components/bio-generator';
 
 export default function Home() {
   return (
-    <div className="flex min-h-screen w-full flex-col">
+    <div className="flex min-h-screen w-full flex-col bg-background text-foreground">
       <Header />
       <main className="flex-1">
         <Hero />
