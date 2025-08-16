@@ -128,7 +128,7 @@ const projects = [
       "DRC/LVS clean layout with symmetric rise and fall times achieved through precise transistor sizing.",
     ],
     modalDetails: "This project provides the baseline metrics for propagation delay, rise/fall times, and power consumption that inform all subsequent digital circuit designs.",
-    image: "https://placehold.co/600x400.png",
+    image: "https://9du0c01mm4og13n7.public.blob.vercel-storage.com/CMOS%202.png",
     dataAiHint: "cmos inverter"
   },
 ];
