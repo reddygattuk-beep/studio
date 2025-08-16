@@ -33,7 +33,7 @@ const projects = [
       "Maintained similar delay (~4.6–80 ps) and dynamic power while significantly improving stability and security.",
     ],
     modalDetails: "The project includes detailed HSPICE simulation waveforms, comparative tables for leakage and delay, and a full methodology write-up. The 8T cell's design inherently offers better resilience against soft errors and side-channel attacks.",
-    image: "https://placehold.co/600x400.png",
+    image: "https://9du0c01mm4og13n7.public.blob.vercel-storage.com/SRAM.png",
     dataAiHint: "memory cell circuit"
   },
   {
