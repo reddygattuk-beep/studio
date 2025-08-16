@@ -99,7 +99,7 @@ const projects = [
       "Preserved logic state and correctness across wake/sleep cycles.",
     ],
     modalDetails: "Provides insights into sleep transistor sizing and its impact on wake-up time and leakage savings. A key project for low-power mobile and IoT applications.",
-    image: "https://placehold.co/600x400.png",
+    image: "https://9du0c01mm4og13n7.public.blob.vercel-storage.com/MTCMOS.png",
     dataAiHint: "transistor diagram"
   },
   {
