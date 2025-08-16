@@ -9,6 +9,7 @@ import { Button } from '@/components/ui/button';
 import { AnimatePresence, motion } from 'framer-motion';
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
 import { useToast } from "@/hooks/use-toast";
+import { SkillIcon } from '@/components/skill-icon';
 
 const skillsData = {
   "HDL & RTL Design": {
@@ -384,6 +385,7 @@ export default function Skills() {
                     <div className="flex flex-wrap gap-2">
                       {details.items.map((item) => (
                          <Badge key={item} variant="secondary" className="group relative cursor-pointer overflow-hidden transition-all duration-300 hover:scale-110 hover:shadow-md">
+                           <SkillIcon skill={item} />
                            <span className="transition-all duration-300 group-hover:pr-2">{item}</span>
                          </Badge>
                       ))}
