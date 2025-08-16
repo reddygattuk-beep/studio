@@ -76,27 +76,23 @@
 }
 
 @layer utilities {
-  @keyframes aurora-bg {
+  @keyframes hex-grid-drift {
     0% {
-      background-position: 0% 50%;
-      background-size: 300% 300%;
-    }
-    50% {
-      background-position: 100% 50%;
-      background-size: 400% 400%;
+      background-position: 0% 0%;
     }
     100% {
-      background-position: 0% 50%;
-      background-size: 300% 300%;
+      background-position: -200% 100%;
     }
   }
 
-  @keyframes aurora-fg {
-    0% { transform: translate(20vw, -20vh) rotate(0deg); }
-    25% { transform: translate(-20vw, 20vh) rotate(90deg); }
-    50% { transform: translate(20vw, 20vh) rotate(180deg); }
-    75% { transform: translate(-20vw, -20vh) rotate(270deg); }
-    100% { transform: translate(20vw, -20vh) rotate(360deg); }
+  @keyframes node-pulse-1 {
+    0%, 100% { background-size: 0% 0%, 100% 100%; opacity: 0.1; }
+    50% { background-size: 2% 2%, 100% 100%; opacity: 0.8; }
+  }
+  
+  @keyframes node-pulse-2 {
+    0%, 100% { opacity: 0.1; }
+    50% { opacity: 0.6; }
   }
 
 
@@ -109,18 +105,20 @@
   #skills::before {
     content: "";
     position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
+    inset: 0;
     z-index: 0;
+    --hex-size: 60px;
+    --hex-gap: 4px;
+    --hex-color: hsl(var(--border) / 0.1);
     background-image:
-      radial-gradient(ellipse at 70% 20%, hsl(245 40% 25% / 0.3), transparent 50%),
-      radial-gradient(ellipse at 30% 30%, hsl(285 100% 30% / 0.3), transparent 50%),
-      radial-gradient(ellipse at 80% 70%, hsl(180 100% 30% / 0.3), transparent 50%);
-    background-size: 300% 300%;
+      radial-gradient(circle at 10% 20%, hsl(var(--primary)/0.2) 0%, transparent 20%),
+      radial-gradient(circle at 80% 30%, hsl(var(--accent)/0.2) 0%, transparent 15%),
+      radial-gradient(circle at 35% 80%, hsl(var(--primary)/0.15) 0%, transparent 25%),
+      url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="64" height="70" viewBox="0 0 64 70"><path fill="none" stroke-opacity="0.08" stroke-width="1.5" stroke="hsl(235, 35%, 55%)" d="M32 0l32 18v36l-32 18L0 54V18zM0 18l32 18L64 18M32 0v36"/></svg>');
+    background-size: auto, auto, auto, 64px 70px;
+    background-position: 0% 0%;
+    animation: hex-grid-drift 60s linear infinite;
     opacity: 0.5;
-    animation: aurora-bg 40s linear infinite;
   }
 
   #skills > .container {
