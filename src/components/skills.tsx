@@ -7,7 +7,6 @@ import { Code, Cpu, Layers, GitMerge, FileCheck2, Search, Zap, Microscope, Brain
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { AnimatePresence, motion } from 'framer-motion';
-import SkillsBackground from './skills-background';
 
 const VhdlSvg = () => <svg viewBox="0 0 100 100" className="h-6 w-6 text-accent"><text x="50%" y="55%" dominantBaseline="middle" textAnchor="middle" fontSize="30" fontWeight="bold" fill="currentColor">VHDL</text></svg>
 const VerilogSvg = () => <svg viewBox="0 0 100 100" className="h-6 w-6 text-accent"><text x="50%" y="55%" dominantBaseline="middle" textAnchor="middle" fontSize="24" fontWeight="bold" fill="currentColor">SV</text></svg>
@@ -85,7 +84,6 @@ export default function Skills() {
 
   return (
     <Section id="skills" className="relative overflow-hidden bg-background">
-      <SkillsBackground />
       <div className="relative z-10">
         <div className="text-center space-y-4 mb-12">
           <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">Technical Skills</h2>

@@ -84,6 +84,81 @@ const jsonLd = {
   ]
 };
 
+const skillsBackgroundScript = `
+(function () {
+  const section = document.getElementById("skills");
+  if (!section) return;
+
+  // Check if canvas already exists to avoid duplicates on HMR
+  if (section.querySelector('.skills-bg')) return;
+
+  const canvas = document.createElement("canvas");
+  canvas.className = "skills-bg";
+  section.prepend(canvas);
+
+  const ctx = canvas.getContext("2d");
+  let raf = 0;
+
+  const dpr = Math.max(1, Math.min(2, window.devicePixelRatio || 1));
+  const resize = () => {
+    const r = section.getBoundingClientRect();
+    canvas.style.width = r.width + "px";
+    canvas.style.height = r.height + "px";
+    canvas.width = Math.floor(r.width * dpr);
+    canvas.height = Math.floor(r.height * dpr);
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+  };
+  
+  const ro = new ResizeObserver(resize);
+  ro.observe(section);
+  resize();
+
+  const reduceMotion = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  const waves = [
+    { color: "rgba(34, 211, 238, 0.12)", amp: 0.06, period: 260, speedSec: 30, y: 0.33 },
+    { color: "rgba(56, 189, 248, 0.12)", amp: 0.05, period: 320, speedSec: 27, y: 0.55 },
+    { color: "rgba(20, 184, 166, 0.10)", amp: 0.04, period: 380, speedSec: 35, y: 0.75 },
+  ];
+
+  function draw(tSec) {
+    const w = canvas.clientWidth, h = canvas.clientHeight;
+    ctx.clearRect(0, 0, w, h);
+    waves.forEach((wv, idx) => {
+      const amp = h * wv.amp;
+      const freq = (2 * Math.PI) / wv.period;
+      const phase = (2 * Math.PI * tSec) / wv.speedSec * (idx % 2 ? 1 : -1);
+      ctx.beginPath();
+      const y0 = h * wv.y;
+      for (let x = 0; x <= w; x += 2) {
+        const y = y0 + Math.sin(x * freq + phase + idx * 0.6) * amp;
+        if (x === 0) ctx.moveTo(x, y); else ctx.lineTo(x, y);
+      }
+      ctx.strokeStyle = wv.color;
+      ctx.lineWidth = 1.5;
+      ctx.shadowColor = wv.color.replace("0.12", "0.25").replace("0.10", "0.20");
+      ctx.shadowBlur = 6;
+      ctx.stroke();
+      ctx.shadowBlur = 0;
+    });
+  }
+
+  if (reduceMotion) {
+    draw(0);
+    return;
+  }
+
+  const start = performance.now();
+  const loop = (now) => {
+    draw((now - start) / 1000);
+    raf = requestAnimationFrame(loop);
+  };
+  raf = requestAnimationFrame(loop);
+
+  // No need for beforeunload, React strict mode in dev can cause issues
+  // but this is fine for production. The resize observer will handle cleanup.
+})();
+`;
 
 export default function RootLayout({
   children,
@@ -98,6 +173,10 @@ export default function RootLayout({
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
+         <script
+          id="skills-background-script"
+          dangerouslySetInnerHTML={{ __html: skillsBackgroundScript }}
         />
       </body>
     </html>
