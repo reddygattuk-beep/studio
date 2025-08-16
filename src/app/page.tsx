@@ -8,6 +8,7 @@ import BioGenerator from '@/components/bio-generator';
 import Footer from '@/components/footer';
 import Hero from '@/components/hero';
 import Skills from '@/components/skills';
+import DesignVerification from '@/components/design-verification';
 
 export default function Home() {
   return (
@@ -16,6 +17,7 @@ export default function Home() {
       <main className="flex-1">
         <Hero />
         <Skills />
+        <DesignVerification />
         <Projects />
         <Experience />
         <Education />

@@ -81,3 +81,62 @@
     inset: 0;
     z-index: -1;
 }
+
+.dv-background {
+    position: relative;
+    overflow: hidden;
+    background-color: hsl(var(--card) / 0.3);
+}
+
+.dv-background::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+    background-image:
+        radial-gradient(circle at 25% 30%, hsl(var(--primary)/0.05), transparent 35%),
+        radial-gradient(circle at 75% 70%, hsl(var(--accent)/0.05), transparent 35%);
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    opacity: 0.5;
+    animation: dv-glow 20s infinite alternate;
+}
+
+.dv-background::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: -2;
+    pointer-events: none;
+    --grid-size: 50px;
+    --line-color: hsl(var(--border) / 0.2);
+    background-image:
+        linear-gradient(var(--line-color) 1px, transparent 1px),
+        linear-gradient(90deg, var(--line-color) 1px, transparent 1px);
+    background-size: var(--grid-size) var(--grid-size);
+    mask-image: radial-gradient(ellipse 80% 60% at 50% 50%, black 40%, transparent 100%);
+    animation: dv-grid-pan 40s linear infinite;
+}
+
+@keyframes dv-glow {
+    from {
+        opacity: 0.5;
+        transform: scale(1) rotate(0deg);
+    }
+    to {
+        opacity: 0.8;
+        transform: scale(1.2) rotate(3deg);
+    }
+}
+
+@keyframes dv-grid-pan {
+    from { background-position: 0 0; }
+    to { background-position: var(--grid-size) var(--grid-size); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .dv-background::before, .dv-background::after {
+    animation: none;
+  }
+}
