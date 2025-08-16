@@ -16,7 +16,7 @@ export default function Hero() {
             </h1>
         </div>
 
-        {/* Both Mobile & Desktop: Photo */}
+        {/* Desktop: Photo First */}
         <div className="relative mx-auto flex h-full w-full max-w-md items-center justify-center py-6 lg:max-w-none lg:py-0">
           <div className="relative aspect-[3/4] w-full overflow-hidden rounded-2xl shadow-lg shadow-primary/10">
             <Image
