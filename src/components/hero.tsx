@@ -35,7 +35,7 @@ export default function Hero() {
       
       <div className="absolute inset-0 bg-background/80 z-10" />
 
-      <div className="container relative z-20 px-4 md:px-6 motion-safe:animate-in motion-safe:fade-in motion-safe:slide-in-from-bottom-12 duration-500 max-w-7xl">
+      <div className="container relative z-20 px-4 md:px-6 motion-safe:animate-in motion-safe:fade-in motion-safe:slide-in-from-bottom-12 max-w-7xl">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-12 lg:gap-16 items-center">
           {/* Right Column (becomes top on mobile): Text Content */}
           <div className="text-center lg:text-left space-y-6 order-1 lg:order-2">
@@ -74,7 +74,7 @@ export default function Hero() {
               <div className="absolute -inset-1 bg-gradient-to-br from-primary via-accent to-violet-600 rounded-2xl blur-lg opacity-60 group-hover:opacity-80 transition duration-500 animate-float"></div>
               <div className="relative w-72 h-96 md:w-80 md:h-[420px] rounded-2xl overflow-hidden glassmorphic-card p-2 animate-float-delay">
                 <Image 
-                  src="https://9du0c01mm4og13n7.public.blob.vercel-storage.com/Keshava_Portfolio.jpg"
+                  src="https://9du0c01mm4og13n7.public.blob.vercel-storage.com/WhatsApp%20Image%202025-08-16%20at%2013.41.42_ed2b7a57.jpg"
                   alt="A portrait of Keshava Reddygattu"
                   width={400}
                   height={550}
