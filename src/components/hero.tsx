@@ -41,15 +41,15 @@ export default function Hero() {
             
             <div className="space-y-2">
                 <h1 className="font-extrabold leading-tight tracking-tighter">
-                    <span className="block" style={{ fontSize: 'clamp(18px, 2.2vw, 28px)' }}>👋 Hey</span>
-                    <span className="block text-4xl sm:text-5xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-primary to-accent" style={{ filter: 'drop-shadow(0 0 8px hsl(var(--primary) / 0.5))', fontSize: 'clamp(22px, 2.6vw, 34px)' }}>
+                    <span className="block" style={{ fontSize: '50px' }}>👋 Hey</span>
+                    <span className="block text-4xl sm:text-5xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-primary to-accent" style={{ filter: 'drop-shadow(0 0 8px hsl(var(--primary) / 0.5))', fontSize: '70px' }}>
                         I am Keshava
                     </span>
-                    <span className="block font-medium text-primary" style={{ fontSize: 'clamp(16px, 1.8vw, 22px)' }}>
+                    <span className="block font-medium text-primary" style={{ fontSize: '40px' }}>
                         VLSI Engineer
                     </span>
                 </h1>
-                <p className="max-w-md font-bold text-foreground" style={{ fontSize: 'clamp(16px, 1.8vw, 22px)' }}>
+                <p className="max-w-md font-bold text-foreground" style={{ fontSize: '40px' }}>
                     I design chips that think fast and sip power. From architecture through verification and layout, I turn complexity into elegant hardware.
                 </p>
             </div>
