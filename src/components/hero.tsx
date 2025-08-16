@@ -43,7 +43,7 @@ export default function Hero() {
               <div className="absolute -inset-1 bg-gradient-to-br from-primary via-accent to-violet-600 rounded-2xl blur-lg opacity-60 group-hover:opacity-80 transition duration-500 animate-float"></div>
               <div className="relative w-72 h-96 md:w-80 md:h-[420px] rounded-2xl overflow-hidden glassmorphic-card p-2 animate-float-delay">
                 <Image 
-                  src="/keshava.jpg"
+                  src="https://placehold.co/400x550.png"
                   alt="A portrait of Keshava Reddygattu"
                   width={400}
                   height={550}
@@ -131,7 +131,7 @@ export default function Hero() {
           @keyframes float {
             0% { transform: translateY(0px); }
             50% { transform: translateY(-4px); }
-            100% { transform: translateY(0px); }
+            100% { translateY(0px); }
           }
           .animate-float { animation: float 6s ease-in-out infinite; }
           .animate-float-delay { animation: float 6s ease-in-out infinite; animation-delay: 0.5s; }
