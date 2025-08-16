@@ -7,6 +7,7 @@ import Contact from '@/components/contact';
 import Footer from '@/components/footer';
 import Hero from '@/components/hero';
 import Skills from '@/components/skills';
+import SocialLinks from '@/components/social-links';
 
 export default function Home() {
   return (
@@ -14,6 +15,7 @@ export default function Home() {
       <Header />
       <main className="flex-1">
         <Hero />
+        <SocialLinks />
         <Skills />
         <Projects />
         <Experience />
