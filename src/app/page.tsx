@@ -1,6 +1,7 @@
 import Header from '@/components/header';
 import Projects from '@/components/projects';
 import Experience from '@/components/experience';
+import PhysicalDesign from '@/components/physical-design';
 import Education from '@/components/education';
 import Certifications from '@/components/certifications';
 import Contact from '@/components/contact';
@@ -18,6 +19,7 @@ export default function Home() {
         <Skills />
         <Projects />
         <Experience />
+        <PhysicalDesign />
         <Education />
         <Certifications />
         <BioGenerator />
