@@ -23,7 +23,7 @@ export default function Header() {
     const handleScroll = () => {
       setScrolled(window.scrollY > 10);
       
-      const sections = navItems.map(item => document.getElementById(item.href.substring(1))).filter(item => item && item.id !== 'resume.pdf');
+      const sections = navItems.map(item => document.getElementById(item.href.substring(1))).filter(Boolean);
       let currentSection = "";
       
       sections.forEach(section => {
@@ -54,7 +54,6 @@ export default function Header() {
             <Link 
               key={item.name} 
               href={item.href} 
-              target={item.target}
               className={cn(
               "text-sm font-medium transition-colors hover:text-primary",
               activeSection === item.href.substring(1) ? "text-primary" : "text-muted-foreground"
@@ -87,7 +86,6 @@ export default function Header() {
                     <SheetClose key={item.name} asChild>
                       <Link 
                         href={item.href} 
-                        target={item.target}
                         className="text-lg font-medium text-foreground hover:text-primary">
                         {item.name}
                       </Link>
