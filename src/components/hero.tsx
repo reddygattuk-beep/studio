@@ -6,7 +6,7 @@ export default function Hero() {
       <div className="mx-auto grid w-full max-w-7xl grid-cols-1 items-center gap-12 lg:grid-cols-2 lg:gap-16">
         
         {/* Desktop: Photo First */}
-        <div className="relative mx-auto hidden h-full w-full max-w-sm items-center justify-center py-6 lg:flex lg:max-w-none lg:py-0">
+        <div className="relative mx-auto hidden h-full w-full max-w-xs items-center justify-center py-6 lg:flex lg:max-w-none lg:py-0">
           <div className="relative aspect-[3/4] w-full overflow-hidden rounded-2xl shadow-lg shadow-primary/10 transition-all duration-300 hover:shadow-primary/20 hover:scale-105">
             <Image
               src="https://9du0c01mm4og13n7.public.blob.vercel-storage.com/WhatsApp%20Image%202025-08-16%20at%2013.41.42_ed2b7a57.jpg"
