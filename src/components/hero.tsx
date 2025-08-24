@@ -9,7 +9,7 @@ export default function Hero() {
         <div className="relative mx-auto hidden h-full w-full max-w-xs items-center justify-center py-6 lg:flex lg:max-w-none lg:py-0">
           <div className="relative aspect-[3/4] w-full overflow-hidden rounded-2xl shadow-lg shadow-primary/10 transition-all duration-300 hover:shadow-primary/20 hover:scale-105">
             <Image
-              src= "/keshu.jpg"
+              src= "/Keshava_Portfolio.jpg"
               alt="Keshava Reddygattu"
               width = {500}
               height = {500} 
@@ -27,7 +27,7 @@ export default function Hero() {
             <div className="relative mx-auto flex h-full w-full max-w-[16rem] items-center justify-center py-6 lg:hidden lg:max-w-none lg:py-0">
               <div className="relative aspect-[3/4] w-full overflow-hidden rounded-2xl shadow-lg shadow-primary/10 transition-all duration-300 hover:shadow-primary/20 hover:scale-105">
                 <Image
-                  src= "/keshu.jpg"
+                  src= "/Keshava_Portfolio.jpg"
                   alt="Keshava Reddygattu"
                   width = {500}
                   height = {500} 
