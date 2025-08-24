@@ -11,6 +11,8 @@ export default function Hero() {
             <Image
               src="https://9du0c01mm4og13n7.public.blob.vercel-storage.com/WhatsApp%20Image%202025-08-16%20at%2013.41.42_ed2b7a57.jpg"
               alt="Keshava Reddygattu"
+              width = {500}
+              height = {500} 
               fill
               className="z-0 object-cover object-center"
               priority
@@ -27,6 +29,8 @@ export default function Hero() {
                 <Image
                   src="https://9du0c01mm4og13n7.public.blob.vercel-storage.com/WhatsApp%20Image%202025-08-16%20at%2013.41.42_ed2b7a57.jpg"
                   alt="Keshava Reddygattu"
+                  width = {500}
+                  height = {500} 
                   fill
                   className="z-0 object-cover object-center"
                   priority
