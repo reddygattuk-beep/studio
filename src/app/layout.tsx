@@ -1,3 +1,4 @@
+import Script from 'next/script';
 import type {Metadata} from 'next';
 import { Inter } from 'next/font/google';
 import './globals.css';
@@ -57,6 +58,35 @@ export const metadata: Metadata = {
     },
   },
 };
+
+      <body className={`${inter.variable} font-sans antialiased`}>
+        {children}
+        <Toaster />
+
+        {/* Google Analytics (GA4) */}
+        <Script
+          src="https://www.googletagmanager.com/gtag/js?id=G-CCS69NZTBK"
+          strategy="afterInteractive"
+        />
+        <Script id="ga4-init" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'G-CCS69NZTBK');
+          `}
+        </Script>
+
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
+        <script
+          id="skills-background-script"
+          dangerouslySetInnerHTML={{ __html: skillsBackgroundScript }}
+        />
+      </body>
+
 
 const jsonLd = {
   '@context': 'https://schema.org',
