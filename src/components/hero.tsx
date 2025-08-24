@@ -6,10 +6,10 @@ export default function Hero() {
       <div className="mx-auto grid w-full max-w-7xl grid-cols-1 items-center gap-12 lg:grid-cols-2 lg:gap-16">
         
         {/* Desktop: Photo First */}
-        <div className="relative mx-auto hidden w-full max-w-[16rem] items-center justify-center py-6 lg:flex lg:py-0">
+        <div className="relative mx-auto hidden w-full max-w-[19rem] items-center justify-center py-6 lg:flex lg:py-0">
           <div className="relative aspect-[3/4] w-full overflow-hidden rounded-2xl shadow-lg shadow-primary/10 transition-all duration-300 hover:shadow-primary/20 hover:scale-105">
             <Image
-              src="/keshu.jpg"
+              src="/Keshava_Portfolio.jpg"
               alt="Keshava Reddygattu"
               width={500}
               height={500}
@@ -24,10 +24,10 @@ export default function Hero() {
         {/* Text Content */}
         <div className="flex flex-col items-center justify-center text-center lg:items-start lg:text-left space-y-4">
           {/* Mobile Photo */}
-          <div className="relative mx-auto flex h-full w-full max-w-[16rem] items-center justify-center py-6 lg:hidden lg:max-w-none lg:py-0">
+          <div className="relative mx-auto flex h-full w-full max-w-[19rem] items-center justify-center py-6 lg:hidden lg:max-w-none lg:py-0">
             <div className="relative aspect-[3/4] w-full overflow-hidden rounded-2xl shadow-lg shadow-primary/10 transition-all duration-300 hover:shadow-primary/20 hover:scale-105">
               <Image
-                src="/keshu.jpg"
+                src="/Keshava_Portfolio.jpg"
                 alt="Keshava Reddygattu"
                 width={500}
                 height={500}
