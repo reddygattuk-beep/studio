@@ -1,19 +1,20 @@
-import Script from 'next/script';
-import type {Metadata} from 'next';
+import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
+import Script from 'next/script'; // ✅ GA4 Script loader
 import './globals.css';
-import { Toaster } from "@/components/ui/toaster"
+import { Toaster } from '@/components/ui/toaster';
 
-const inter = Inter({ subsets: ['latin'], variable: '--font-inter' })
+const inter = Inter({ subsets: ['latin'], variable: '--font-inter' });
 
 const siteConfig = {
   title: 'Keshava Reddygattu | VLSI & Digital Design Engineer',
-  description: 'The professional portfolio of Keshava Reddygattu, a VLSI and Digital Design Engineer specializing in RTL design, low-power techniques, and hardware acceleration.',
+  description:
+    'The professional portfolio of Keshava Reddygattu, a VLSI and Digital Design Engineer specializing in RTL design, low-power techniques, and hardware acceleration.',
   url: 'https://circuitflow.example.com', // Replace with your actual domain
   author: 'Keshava Reddygattu',
   image: 'https://circuitflow.example.com/og-image.png', // Replace with your actual OG image URL
   twitterHandle: '@kesh7044', // Replace with your Twitter handle
-}
+};
 
 export const metadata: Metadata = {
   title: {
@@ -22,20 +23,20 @@ export const metadata: Metadata = {
   },
   description: siteConfig.description,
   metadataBase: new URL(siteConfig.url),
-  alternates: {
-    canonical: '/',
-  },
+  alternates: { canonical: '/' },
   openGraph: {
     type: 'website',
     url: siteConfig.url,
     title: siteConfig.title,
     description: siteConfig.description,
-    images: [{
-      url: siteConfig.image,
-      width: 1200,
-      height: 630,
-      alt: 'Keshava Reddygattu Portfolio Banner',
-    }],
+    images: [
+      {
+        url: siteConfig.image,
+        width: 1200,
+        height: 630,
+        alt: 'Keshava Reddygattu Portfolio Banner',
+      },
+    ],
     siteName: 'CircuitFlow Portfolio',
   },
   twitter: {
@@ -59,35 +60,6 @@ export const metadata: Metadata = {
   },
 };
 
-      <body className={`${inter.variable} font-sans antialiased`}>
-        {children}
-        <Toaster />
-
-        {/* Google Analytics (GA4) */}
-        <Script
-          src="https://www.googletagmanager.com/gtag/js?id=G-CCS69NZTBK"
-          strategy="afterInteractive"
-        />
-        <Script id="ga4-init" strategy="afterInteractive">
-          {`
-            window.dataLayer = window.dataLayer || [];
-            function gtag(){dataLayer.push(arguments);}
-            gtag('js', new Date());
-            gtag('config', 'G-CCS69NZTBK');
-          `}
-        </Script>
-
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-        />
-        <script
-          id="skills-background-script"
-          dangerouslySetInnerHTML={{ __html: skillsBackgroundScript }}
-        />
-      </body>
-
-
 const jsonLd = {
   '@context': 'https://schema.org',
   '@type': 'Person',
@@ -95,23 +67,11 @@ const jsonLd = {
   url: siteConfig.url,
   jobTitle: 'VLSI & Digital Design Engineer',
   alumniOf: [
-    {
-      '@type': 'CollegeOrUniversity',
-      name: 'Illinois Institute of Technology',
-    },
-    {
-      '@type': 'CollegeOrUniversity',
-      name: 'JNTU',
-    }
+    { '@type': 'CollegeOrUniversity', name: 'Illinois Institute of Technology' },
+    { '@type': 'CollegeOrUniversity', name: 'JNTU' },
   ],
-  worksFor: {
-    '@type': 'Organization',
-    name: 'InnoMountain'
-  },
-  sameAs: [
-    'https://www.linkedin.com/in/kesh7044/',
-    'https://github.com/keshuH'
-  ]
+  worksFor: { '@type': 'Organization', name: 'InnoMountain' },
+  sameAs: ['https://www.linkedin.com/in/kesh7044/', 'https://github.com/keshuH'],
 };
 
 const skillsBackgroundScript = `
@@ -119,7 +79,6 @@ const skillsBackgroundScript = `
   const section = document.getElementById("skills");
   if (!section) return;
 
-  // Check if canvas already exists to avoid duplicates on HMR
   if (section.querySelector('.skills-bg')) return;
 
   const canvas = document.createElement("canvas");
@@ -184,27 +143,38 @@ const skillsBackgroundScript = `
     raf = requestAnimationFrame(loop);
   };
   raf = requestAnimationFrame(loop);
-
-  // No need for beforeunload, React strict mode in dev can cause issues
-  // but this is fine for production. The resize observer will handle cleanup.
 })();
 `;
 
 export default function RootLayout({
   children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
+}: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="en" className="dark">
       <body className={`${inter.variable} font-sans antialiased`}>
         {children}
         <Toaster />
+
+        {/* ✅ GA4 (no functionality changes elsewhere) */}
+        <Script
+          src="https://www.googletagmanager.com/gtag/js?id=G-CCS69NZTBK"
+          strategy="afterInteractive"
+        />
+        <Script id="ga4-init" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'G-CCS69NZTBK');
+          `}
+        </Script>
+
+        {/* Existing scripts preserved */}
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
-         <script
+        <script
           id="skills-background-script"
           dangerouslySetInnerHTML={{ __html: skillsBackgroundScript }}
         />
