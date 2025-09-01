@@ -13,14 +13,14 @@ const certifications = [
     issuer: "Cadence Training",
     date: "Sep 2025",
     category: "EDA",
-    details: "AI/ML in EDA workflows covering supervised, unsupervised & reinforcement learning; deep learning basics and data pipelines applied to chip design. ATS: ML in EDA, supervised learning, unsupervised learning, reinforcement learning, deep learning, Python, scikit-learn, TensorFlow, data preprocessing, feature engineering, model validation, cross-validation, ROC-AUC, PPA optimization, design-space exploration, anomaly detection."
+    details: "AI/ML in EDA workflows covering supervised, unsupervised & reinforcement learning; deep learning basics and data pipelines applied to chip design. Skills: Machine Learning, Deep Learning, Python, EDA Automation, Data Analysis"
   },
   {
     title: "Cadence Training - Design for Test (DFT) Fundamentals",
     issuer: "Cadence Training",
     date: "Sep 2025",
     category: "EDA",
-    details: "Principles of DFT for digital ICs: scan architecture, ATPG, fault models, and compression techniques to improve testability and coverage. ATS: scan insertion, scan chains, ATPG, stuck-at faults, transition delay faults, fault modeling, controllability/observability, boundary scan (JTAG IEEE 1149.1), MBIST, LBIST, MISR, BIST, test compression, fault coverage, pattern generation, diagnostics."
+    details: "Principles of DFT for digital ICs: scan architecture, ATPG, fault models, and compression techniques to improve testability and coverage. Skills: DFT, ATPG, Scan Chains, Fault Coverage, BIST"
   },
   {
     title: "Cadence RTL-to-GDSII Flow",
